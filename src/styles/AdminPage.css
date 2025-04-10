@@ -1,0 +1,452 @@
+.admin-page {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.admin-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.add-product-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--transition);
+}
+
+.add-product-btn:hover {
+  background-color: var(--accent-hover);
+}
+
+.admin-error {
+  background-color: rgba(244, 67, 54, 0.1);
+  color: var(--error);
+  padding: 1rem;
+  border-radius: var(--radius);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.admin-success {
+  background-color: rgba(76, 175, 80, 0.1);
+  color: var(--success);
+  padding: 1rem;
+  border-radius: var(--radius);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.product-form-container {
+  background-color: var(--background-light);
+  border-radius: var(--radius);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow);
+}
+
+.product-form h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: var(--input-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-primary);
+  font-family: inherit;
+  transition: border-color var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+/* Yeni görsel yükleme stili */
+.image-upload-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.image-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.image-upload-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--background-lighter);
+  color: var(--text-primary);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  border: 1px dashed var(--border);
+  transition: background-color var(--transition);
+  width: fit-content;
+}
+
+.image-upload-label:hover {
+  background-color: var(--border);
+}
+
+.upload-icon {
+  color: var(--accent);
+}
+
+.image-upload-info {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  margin-top: 0.25rem;
+}
+
+.image-preview {
+  margin-bottom: 1.5rem;
+  border-radius: var(--radius);
+  overflow: hidden;
+  max-width: 300px;
+  position: relative;
+}
+
+.image-preview img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.remove-image-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--transition);
+}
+
+.remove-image-btn:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.cancel-btn {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--background-lighter);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color var(--transition);
+}
+
+.cancel-btn:hover {
+  background-color: var(--border);
+}
+
+.submit-btn {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+}
+
+.submit-btn:hover {
+  background-color: var(--accent-hover);
+}
+
+.submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.products-table-container {
+  background-color: var(--background-light);
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+}
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.table-header h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.table-responsive {
+  overflow-x: auto;
+  margin-bottom: 1rem;
+}
+
+.products-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.products-table th,
+.products-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.products-table th {
+  font-weight: 600;
+  color: var(--text-secondary);
+  background-color: var(--background-lighter);
+}
+
+/* Sütun genişliklerini ayarlayalım */
+.image-column {
+  width: 80px;
+}
+
+.name-column {
+  width: 30%;
+}
+
+.category-column {
+  width: 20%;
+}
+
+.price-column {
+  width: 15%;
+}
+
+.actions-column {
+  width: 100px;
+  text-align: center;
+}
+
+.product-image-cell {
+  width: 80px;
+}
+
+.product-thumbnail {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+}
+
+.no-image {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background-lighter);
+  border-radius: var(--radius-sm);
+  color: var(--text-tertiary);
+}
+
+.actions-cell {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.edit-btn,
+.delete-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--transition);
+}
+
+.edit-btn {
+  background-color: var(--background-lighter);
+  color: var(--text-primary);
+}
+
+.edit-btn:hover {
+  background-color: var(--border);
+}
+
+.delete-btn {
+  background-color: rgba(244, 67, 54, 0.1);
+  color: var(--error);
+}
+
+.delete-btn:hover {
+  background-color: rgba(244, 67, 54, 0.2);
+}
+
+.loading-spinner {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  border-top-color: var(--accent);
+  animation: spin 1s ease-in-out infinite;
+  margin: 2rem auto;
+}
+
+.spinner-small {
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  border-top-color: currentColor;
+  animation: spin 1s ease-in-out infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.no-products-message {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-secondary);
+}
+
+/* Admin erişim engellendi sayfası */
+.admin-access-denied {
+  text-align: center;
+  padding: 3rem;
+  background-color: var(--background-light);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin: 2rem auto;
+  max-width: 500px;
+}
+
+.admin-access-denied h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--error);
+}
+
+.admin-access-denied p {
+  margin-bottom: 1.5rem;
+  color: var(--text-secondary);
+}
+
+.back-to-home-btn {
+  display: inline-block;
+  background-color: var(--accent);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--transition);
+}
+
+.back-to-home-btn:hover {
+  background-color: var(--accent-hover);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .admin-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .table-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .cancel-btn,
+  .submit-btn {
+    width: 100%;
+  }
+}

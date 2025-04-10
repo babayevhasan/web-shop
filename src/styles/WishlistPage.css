@@ -1,0 +1,142 @@
+.wishlist-page {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.wishlist-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.wishlist-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.clear-wishlist-btn {
+  display: flex;
+  align-items: center;
+  color: var(--error);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  transition: background-color var(--transition);
+}
+
+.clear-wishlist-btn:hover {
+  background-color: rgba(244, 67, 54, 0.1);
+}
+
+.clear-icon {
+  margin-right: 0.5rem;
+}
+
+.wishlist-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.wishlist-item {
+  position: relative;
+}
+
+.wishlist-heart-button-container {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 6;
+}
+
+.wishlist-heart-button {
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform var(--transition);
+}
+
+.wishlist-heart-button:hover {
+  transform: scale(1.1);
+}
+
+.empty-wishlist {
+  text-align: center;
+  padding: 3rem;
+  background-color: var(--background-light);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.empty-wishlist-icon {
+  color: var(--text-tertiary);
+  margin-bottom: 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.empty-wishlist-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.empty-wishlist-message {
+  margin-bottom: 1.5rem;
+  color: var(--text-secondary);
+}
+
+.continue-shopping-btn {
+  display: inline-block;
+  background-color: var(--accent);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  transition: background-color var(--transition);
+}
+
+.continue-shopping-btn:hover {
+  background-color: var(--accent-hover);
+}
+
+/* Favoriler sayfasında ürün kartlarındaki kalp ikonunu gizle */
+.wishlist-item .wishlist-icon-button {
+  display: none !important;
+}
+
+@media (min-width: 640px) {
+  .wishlist-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .wishlist-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .wishlist-title {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .wishlist-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
