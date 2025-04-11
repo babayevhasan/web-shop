@@ -21,7 +21,7 @@ export const getProducts = async () => {
   try {
     console.log("Ürünler getiriliyor...")
     const snapshot = await getDocs(productsCol)
-    console.log("Firestore yanıt verdi:", snapshot.size, "ürün bulundu")
+    // console.log("Firestore yanıt verdi:", snapshot.size, "ürün bulundu")
     return snapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
@@ -46,7 +46,7 @@ export const getProductById = async (id) => {
         ...docSnap.data(),
       }
     } else {
-      console.log("No such product!")
+      // console.log("No such product!")
       return null
     }
   } catch (error) {
@@ -64,7 +64,7 @@ export const getProductsByCategory = async (category) => {
     const snapshot = await getDocs(q)
 
     if (snapshot.empty) {
-      console.log("No products found in category:", category)
+      // console.log("No products found in category:", category)
       return []
     }
 
@@ -349,7 +349,7 @@ export const seedProducts = async () => {
     for (const product of initialProducts) {
       await addProduct(product)
     }
-    console.log("Initial products seeded successfully!")
+    // console.log("Initial products seeded successfully!")
   } catch (error) {
     console.error("Error seeding initial products: ", error)
   }

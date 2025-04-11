@@ -72,11 +72,40 @@ function App() {
     </BrowserRouter>
   )
 }
-
-
-// beden seçeneklerini seçmek olmuyor. reng seçenekleri çok
-//  küçük biraz büyük olmalı. ürün görsellerini seçiyorum ama 
-// eklenmiyor. ekle buttonu çalışmıyor. hepsini düzelt.
-//  ayrıca gereksiz consolelogları kaldır. kafamı karıştırıyor.
-
 export default App
+
+
+
+
+// category
+// "Kitchen"
+// (string)
+
+
+// description
+// "Programmable coffee maker with built-in grinder and thermal carafe."
+// (string)
+
+
+// image
+// "https://images.unsplash.com/photo-1570087935869-a8041cc3f9ec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+// (string)
+
+
+// name
+// "Coffee Maker"
+// (string)
+
+
+// price
+// 599.99
+// (number)
+
+
+// rating
+// 4.7
+// (number)
+
+
+// reviews
+// 183
