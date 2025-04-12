@@ -18,6 +18,7 @@ import AdminPage from "./pages/AdminPage" // Admin sayfasını ekledik
 import ProtectedRoute from "./components/ProtectedRoute"
 import "./styles/App.css"
 
+
 function App() {
   return (
     <BrowserRouter>

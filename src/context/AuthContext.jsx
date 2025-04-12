@@ -17,6 +17,7 @@ export const useAuth = () => {
   return context
 }
 
+
 // Provider bileşeni
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null)

@@ -7,7 +7,6 @@ export default function ProtectedRoute({ children }) {
   const { currentUser, loading, isAdmin } = useAuth()
   const location = useLocation()
 
-  // Admin sayfası için özel kontrol ekleyelim
   const isAdminRoute = location.pathname === "/admin"
 
   if (loading) {
@@ -18,6 +17,7 @@ export default function ProtectedRoute({ children }) {
       </div>
     )
   }
+  
 
   // Kullanıcı giriş yapmamışsa login sayfasına yönlendir
   if (!currentUser) {

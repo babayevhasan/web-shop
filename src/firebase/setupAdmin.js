@@ -44,3 +44,4 @@ export const verifyAndSetupAdmin = async (userId, email, password) => {
     return false
   }
 }
+

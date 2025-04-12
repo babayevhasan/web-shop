@@ -8,6 +8,7 @@ export const backupFirestoreData = async () => {
     const collectionsToBackup = ["products", "orders"]
     const backupData = {}
 
+    
     // Her koleksiyon için verileri al
     for (const collectionName of collectionsToBackup) {
       const querySnapshot = await getDocs(collection(db, collectionName))

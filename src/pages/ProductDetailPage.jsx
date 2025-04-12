@@ -44,11 +44,12 @@ export default function ProductDetailPage() {
   const productImages = product
     ? [
         product.image,
-        product.image, // Normalde farklı açılardan görüntüler olacak
-        product.image, // Normalde farklı açılardan görüntüler olacak
+        // product.image, 
+        // product.image, 
       ]
     : []
 
+    
   useEffect(() => {
     const fetchProduct = async () => {
       try {

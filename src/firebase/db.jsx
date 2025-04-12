@@ -15,3 +15,4 @@ export const isUserAdmin = async (userId) => {
     return false
   }
 }
+

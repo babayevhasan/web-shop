@@ -4,7 +4,6 @@ import { createContext, useState, useEffect, useContext } from "react"
 
 export const CartContext = createContext()
 
-// useCart hook'unu tanımlayın
 export const useCart = () => {
   const context = useContext(CartContext)
   if (!context) {
@@ -12,6 +11,7 @@ export const useCart = () => {
   }
   return context
 }
+
 
 export function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState([])

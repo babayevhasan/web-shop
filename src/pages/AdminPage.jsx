@@ -12,6 +12,7 @@ export default function AdminPage() {
   const navigate = useNavigate()
   const fileInputRefs = [useRef(null), useRef(null), useRef(null)]
 
+
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -740,3 +741,4 @@ export default function AdminPage() {
     </div>
   )
 }
+

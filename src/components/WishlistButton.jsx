@@ -32,6 +32,7 @@ export default function WishlistButton({ product }) {
     }
   }
 
+  
   return (
     <button
       onClick={toggleWishlist}

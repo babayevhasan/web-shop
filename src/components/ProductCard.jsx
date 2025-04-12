@@ -1,6 +1,5 @@
 "use client"
 
-// ProductCard.jsx'de performans iyileştirmeleri yapıyorum
 import { useState, useEffect, useCallback, memo } from "react"
 import { Link } from "react-router-dom"
 import { useCart } from "../context/CartContext"
@@ -13,6 +12,7 @@ const ProductCard = memo(({ product, isInWishlistPage = false }) => {
   const [isInWishlist, setIsInWishlist] = useState(false)
   const [isAddingToCart, setIsAddingToCart] = useState(false)
 
+  
   useEffect(() => {
     const wishlist = JSON.parse(localStorage.getItem("wishlist") || "[]")
     setIsInWishlist(wishlist.some((item) => item.id === product.id))

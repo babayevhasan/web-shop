@@ -17,6 +17,7 @@ export default function ProfilePage() {
   const { currentUser, logout } = useAuth()
   const navigate = useNavigate()
 
+  
   const [displayName, setDisplayName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")

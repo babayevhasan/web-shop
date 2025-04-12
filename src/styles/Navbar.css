@@ -408,6 +408,7 @@
   .navbar-menu {
     display: flex;
   }
+  
 
   .mobile-menu-controls {
     display: none;
@@ -417,6 +418,7 @@
     display: none;
   }
 }
+
 
 @media (max-width: 1024px) {
   .navbar-content {
