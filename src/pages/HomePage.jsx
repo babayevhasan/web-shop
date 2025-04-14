@@ -1,18 +1,17 @@
 "use client"
 
-// Başa import ekleyelim
 import { useEffect, useState, useRef, useMemo } from "react"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import ProductCard from "../components/ProductCard"
 import { useProducts } from "../context/ProductsContext"
-import { useAuth } from "../context/AuthContext" // Auth context'i import ediyorum
+import { useAuth } from "../context/AuthContext" 
 import { ChevronDown, ChevronUp, SlidersHorizontal } from "lucide-react"
 import "../styles/HomePage.css"
 
 export default function HomePage() {
   const location = useLocation()
   const navigate = useNavigate()
-  const { currentUser } = useAuth() // Kullanıcı bilgisini alıyorum
+  const { currentUser } = useAuth() 
   const {
     products,
     loading,
@@ -33,7 +32,6 @@ export default function HomePage() {
   const [activeCategory, setActiveCategory] = useState("all")
   const productsRef = useRef(null)
 
-  // URL parametrelerini almak için useMemo kullanıyoruz
   const urlParams = useMemo(() => {
     const params = new URLSearchParams(location.search)
     return {
@@ -45,7 +43,6 @@ export default function HomePage() {
     }
   }, [location.search])
 
-  // URL parametrelerini state'e aktarmak için
   useEffect(() => {
     setSearchQuery(urlParams.query)
 
@@ -158,31 +155,6 @@ export default function HomePage() {
       </div>
     )
   }
-
-  // Giyim kategorileri
-  const clothingCategories = [
-    {
-      name: "Kadın",
-      image:
-        "https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-    },
-    {
-      name: "Erkek",
-      image:
-        "https://images.unsplash.com/photo-1617137968427-85924c800a22?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-    },
-    {
-      name: "Çocuk",
-      image:
-        "https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-    },
-    {
-      name: "Aksesuar",
-      image:
-        "https://images.unsplash.com/photo-1611923134239-b9be5816e23c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-    },
-  ]
-
   return (
     <div className="home-page">
       {searchQuery ? (
@@ -194,7 +166,6 @@ export default function HomePage() {
             </button>
           </div>
 
-          {/* Filtreleme ve sıralama bölümü */}
           <div className="filter-sort-container">
             <button className="filter-toggle-btn" onClick={() => setShowFilters(!showFilters)}>
               <SlidersHorizontal size={18} />
@@ -314,14 +285,17 @@ export default function HomePage() {
           <section className="categories-section animate-fade-in">
             <h2 className="section-title">Kategoriler</h2>
             <div className="categories-grid">
-              {clothingCategories.map((category) => (
-                <Link key={category.name} to={`/category/${category.name}`} className="category-card">
-                  <img src={category.image || "/placeholder.svg"} alt={category.name} className="category-image" />
-                  <div className="category-overlay">
-                    <span className="category-name">{category.name}</span>
-                  </div>
-                </Link>
-              ))}
+              {categories.map((category) => {
+                const randomProduct = products.find((product) => product.category === category)
+                return (
+                  <Link key={category} to={`/category/${category}`} className="category-card">
+                    {randomProduct && <img src={randomProduct.image} alt={category} className="category-image" />}
+                    <div className="category-overlay">
+                      <span className="category-name">{category}</span>
+                    </div>
+                  </Link>
+                )
+              })}
             </div>
           </section>
 
@@ -416,18 +390,14 @@ export default function HomePage() {
           <section id="featured-products" ref={productsRef} className="featured-section animate-fade-in">
             <h2 className="section-title">
               {activeCategory !== "all" ? `${activeCategory} Ürünleri` : "Tüm Ürünler"}
-              <Link to="/" className="view-all">
-                Tümünü Gör
-              </Link>
             </h2>
             <div className="products-grid">
-              {displayedProducts.slice(0, 8).map((product) => (
+              {displayedProducts.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
             </div>
           </section>
 
-          {/* Newsletter bölümünü sadece kullanıcı giriş yapmamışsa göster */}
           {!currentUser && (
             <section className="newsletter-section animate-fade-in">
               <div className="newsletter-content">

@@ -53,12 +53,11 @@ function App() {
                         </ProtectedRoute>
                       }
                     />
-                    {/* Admin rotasını düzeltelim */}
                     <Route
                       path="/admin"
                       element={
                         <ProtectedRoute>
-                          <AdminPage />
+                          <AdminPage/>
                         </ProtectedRoute>
                       }
                     />
@@ -79,34 +78,34 @@ export default App
 
 
 // category
-// "Kitchen"
+// "Electronics"
 // (string)
 
 
 // description
-// "Programmable coffee maker with built-in grinder and thermal carafe."
+// "Fitness tracker and smartwatch with heart rate monitoring, GPS, and 7-day battery life."
 // (string)
 
 
 // image
-// "https://images.unsplash.com/photo-1570087935869-a8041cc3f9ec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+// "https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1099&q=80"
 // (string)
 
 
 // name
-// "Coffee Maker"
+// "Smart Watch"
 // (string)
 
 
 // price
-// 599.99
+// 1299.99
 // (number)
 
 
 // rating
-// 4.7
+// 4.6
 // (number)
 
 
 // reviews
-// 183
+// 312
