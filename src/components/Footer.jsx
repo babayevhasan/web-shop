@@ -19,7 +19,7 @@ export default function Footer() {
             </p>
             <div className="social-links">
               <a
-              
+
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -59,29 +59,6 @@ export default function Footer() {
           </div>
 
           <div className="footer-section">
-            <h3 className="footer-title">Kategoriler</h3>
-            <ul className="footer-links">
-              <li>
-                <Link to="/category/Kadın" className="footer-link">
-                  Kadın Giyim
-                </Link>
-              </li>
-              <li>
-                <Link to="/category/Erkek" className="footer-link">
-                  Erkek Giyim
-                </Link>
-              </li>
-              <li>
-                <Link to="/category/Çocuk" className="footer-link">
-                  Çocuk Giyim
-                </Link>
-              </li>
-              <li>
-                <Link to="/category/Aksesuar" className="footer-link">
-                  Aksesuarlar
-                </Link>
-              </li>
-            </ul>
           </div>
 
           <div className="footer-section">
@@ -154,10 +131,12 @@ export default function Footer() {
         </div>
 
         <div className="footer-bottom">
-          <p>&copy; {currentYear} ShopHub. Tüm hakları saklıdır.</p>
+          <p>&copy; {currentYear} LaLaShop. Tüm hakları saklıdır.</p>
         </div>
       </div>
     </footer>
   )
 }
+
+
 

@@ -25,10 +25,13 @@ export default function ProductDetailPage() {
   const [zoomPosition, setZoomPosition] = useState({ x: 0, y: 0 })
   const [activeImage, setActiveImage] = useState(0)
 
-  // Mevcut ürün için kullanılabilir bedenler
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+  // ölçüler
   const availableSizes = ["XS", "S", "M", "L", "XL", "XXL"]
 
-  // Mevcut ürün için kullanılabilir renkler
+  // rengler
   const availableColors = [
     { name: "Siyah", code: "#000000" },
     { name: "Beyaz", code: "#FFFFFF" },
@@ -43,13 +46,13 @@ export default function ProductDetailPage() {
   // Ürün görselleri (ana görsel + varyasyonlar)
   const productImages = product
     ? [
-        product.image,
-        // product.image, 
-        // product.image, 
-      ]
+      product.image,
+      // product.image, 
+      // product.image, 
+    ]
     : []
 
-    
+
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -135,6 +138,7 @@ export default function ProductDetailPage() {
     // Sepete ekledikten sonra sepet sayfasına yönlendir
     navigate("/cart")
   }
+
 
   const handleBuyNow = () => {
     if (!selectedSize || !selectedColor) {
@@ -227,9 +231,9 @@ Toplam: ${(product.price * quantity).toLocaleString("tr-TR", { style: "currency"
               style={
                 isZoomed
                   ? {
-                      transform: "scale(2)",
-                      transformOrigin: `${zoomPosition.x}% ${zoomPosition.y}%`,
-                    }
+                    transform: "scale(2)",
+                    transformOrigin: `${zoomPosition.x}% ${zoomPosition.y}%`,
+                  }
                   : {}
               }
             />

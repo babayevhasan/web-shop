@@ -6,9 +6,14 @@ import { useCart } from "../context/CartContext"
 import { Trash2, Plus, Minus, ShoppingBag, MessageCircle } from "lucide-react"
 import "../styles/CartPage.css"
 
+import { useEffect } from "react"
 export default function CartPage() {
   const { cartItems, removeFromCart, updateQuantity, getCartTotal, clearCart } = useCart()
   const [note, setNote] = useState("")
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   const handleQuantityChange = (productId, newQuantity) => {
     updateQuantity(productId, newQuantity)
