@@ -16,7 +16,6 @@ export const useCart = () => {
 export function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState([])
 
-  // LocalStorage'dan sepet öğelerini yükle
   useEffect(() => {
     const savedCartItems = localStorage.getItem("cartItems")
     if (savedCartItems) {
@@ -29,25 +28,20 @@ export function CartProvider({ children }) {
     }
   }, [])
 
-  // Sepet öğeleri değiştiğinde localStorage'a kaydet
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems))
   }, [cartItems])
 
-  // Sepete ürün ekle
   const addToCart = (product, quantity = 1) => {
     if (!product) return
 
     setCartItems((prevItems) => {
-      // Aynı ürün, aynı beden ve aynı renk varsa miktarını artır
       const uniqueId = product.uniqueId || product.id
       const existingItem = prevItems.find((item) => {
-        // Eğer uniqueId varsa ona göre kontrol et
         if (product.uniqueId && item.product.uniqueId) {
           return item.product.uniqueId === uniqueId
         }
 
-        // Yoksa ürün ID, beden ve renk kombinasyonuna göre kontrol et
         if (item.product.selectedSize && item.product.selectedColor && product.selectedSize && product.selectedColor) {
           return (
             item.product.id === product.id &&
@@ -56,7 +50,6 @@ export function CartProvider({ children }) {
           )
         }
 
-        // Hiçbiri yoksa sadece ürün ID'sine göre kontrol et
         return item.product.id === product.id
       })
 
@@ -79,11 +72,9 @@ export function CartProvider({ children }) {
     })
   }
 
-  // Sepetten ürün çıkar
   const removeFromCart = (productId) => {
     setCartItems((prevItems) =>
       prevItems.filter((item) => {
-        // uniqueId varsa ona göre, yoksa normal id'ye göre filtrele
         if (item.product.uniqueId) {
           return item.product.uniqueId !== productId
         }
@@ -92,14 +83,12 @@ export function CartProvider({ children }) {
     )
   }
 
-  // Ürün miktarını güncelle
   const updateQuantity = (productId, newQuantity) => {
     if (newQuantity <= 0) {
       removeFromCart(productId)
     } else {
       setCartItems((prevItems) =>
         prevItems.map((item) => {
-          // uniqueId varsa ona göre, yoksa normal id'ye göre güncelle
           if (
             (item.product.uniqueId && item.product.uniqueId === productId) ||
             (!item.product.uniqueId && item.product.id === productId)
@@ -112,17 +101,14 @@ export function CartProvider({ children }) {
     }
   }
 
-  // Sepeti temizle
   const clearCart = () => {
     setCartItems([])
   }
 
-  // Sepetteki toplam ürün sayısını hesapla
   const getCartItemsCount = () => {
     return cartItems.reduce((total, item) => total + item.quantity, 0)
   }
 
-  // Sepet toplamını hesapla
   const getCartTotal = () => {
     return cartItems.reduce((total, item) => {
       const price = item.product.price || 0

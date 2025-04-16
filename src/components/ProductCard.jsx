@@ -6,13 +6,11 @@ import { useCart } from "../context/CartContext"
 import { ShoppingCart, Heart } from "lucide-react"
 import "../styles/ProductCard.css"
 
-// React.memo ile gereksiz render'ları önlüyorum
 const ProductCard = memo(({ product, isInWishlistPage = false }) => {
   const { addToCart } = useCart()
   const [isInWishlist, setIsInWishlist] = useState(false)
   const [isAddingToCart, setIsAddingToCart] = useState(false)
 
-  
   useEffect(() => {
     const wishlist = JSON.parse(localStorage.getItem("wishlist") || "[]")
     setIsInWishlist(wishlist.some((item) => item.id === product.id))
@@ -23,13 +21,10 @@ const ProductCard = memo(({ product, isInWishlistPage = false }) => {
       e.preventDefault()
       e.stopPropagation()
 
-      // Animasyon için durum değişikliği
       setIsAddingToCart(true)
 
-      // Sepete ekle
       addToCart(product, 1)
 
-      // Animasyonu kapat
       setTimeout(() => {
         setIsAddingToCart(false)
       }, 500)
@@ -45,12 +40,10 @@ const ProductCard = memo(({ product, isInWishlistPage = false }) => {
       const wishlist = JSON.parse(localStorage.getItem("wishlist") || "[]")
 
       if (isInWishlist) {
-        // Ürünü istek listesinden çıkar
         const newWishlist = wishlist.filter((item) => item.id !== product.id)
         localStorage.setItem("wishlist", JSON.stringify(newWishlist))
         setIsInWishlist(false)
       } else {
-        // Ürünü istek listesine ekle
         const newWishlist = [...wishlist, product]
         localStorage.setItem("wishlist", JSON.stringify(newWishlist))
         setIsInWishlist(true)
@@ -59,7 +52,6 @@ const ProductCard = memo(({ product, isInWishlistPage = false }) => {
     [isInWishlist, product],
   )
 
-  // Fiyat formatını optimize et
   const formattedPrice = new Intl.NumberFormat("tr-TR", {
     style: "currency",
     currency: "TRY",
@@ -73,13 +65,13 @@ const ProductCard = memo(({ product, isInWishlistPage = false }) => {
             src={product.image || "/placeholder.svg"}
             alt={product.name}
             className="product-image"
-            loading="lazy" // Lazy loading ekledim
+            loading="lazy" 
           />
           {!isInWishlistPage && (
             <button
               onClick={toggleWishlist}
               className={`wishlist-icon-button ${isInWishlist ? "active" : ""}`}
-              aria-label={isInWishlist ? "Favorilerden kaldır" : "Favorilere ekle"}
+              aria-label={isInWishlist ? "Remove from favorites" : "Add to favorites"}
             >
               <Heart size={16} fill={isInWishlist ? "currentColor" : "none"} />
             </button>
@@ -97,7 +89,7 @@ const ProductCard = memo(({ product, isInWishlistPage = false }) => {
             <button
               onClick={handleAddToCart}
               className={`add-to-cart-button ${isAddingToCart ? "adding" : ""}`}
-              aria-label="Sepete ekle"
+              aria-label="Add to Basket"
             >
               <ShoppingCart size={16} />
             </button>
@@ -108,7 +100,6 @@ const ProductCard = memo(({ product, isInWishlistPage = false }) => {
   )
 })
 
-// Bileşen adını ayarla (React DevTools için)
 ProductCard.displayName = "ProductCard"
 
 export default ProductCard

@@ -1,7 +1,6 @@
 import { doc, getDoc } from "firebase/firestore"
 import { db } from "./config"
 
-// Kullanıcının admin olup olmadığını kontrol et
 export const isUserAdmin = async (userId) => {
   try {
     const userDoc = await getDoc(doc(db, "users", userId))

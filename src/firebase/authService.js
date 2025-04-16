@@ -12,19 +12,14 @@ import { db } from "./config"
 import { doc, setDoc, getDoc, serverTimestamp } from "firebase/firestore"
 
 
-// Kullanıcı kaydı
 export const registerUser = async (email, password, displayName) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password)
 
-    // Kullanıcı profil bilgilerini güncelle
     await updateProfile(userCredential.user, { displayName })
 
-    // Admin kontrolü için özel bir alan ekleyelim
-    // Sadece belirli e-postalar için admin rolü verilecek
     const isAdmin = email === "hasanadmin2005@gmail.com"
 
-    // Kullanıcı veritabanında admin rolünü saklayalım
     if (userCredential.user) {
       await setDoc(doc(db, "users", userCredential.user.uid), {
         email,
@@ -41,16 +36,13 @@ export const registerUser = async (email, password, displayName) => {
   }
 }
 
-// Kullanıcı girişi
 export const loginUser = async (email, password) => {
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password)
 
-    // Kullanıcının admin rolünü kontrol et
     const userDoc = await getDoc(doc(db, "users", userCredential.user.uid))
     const userData = userDoc.data()
 
-    // Kullanıcı nesnesine admin bilgisini ekle
     if (userData) {
       userCredential.user.customData = {
         isAdmin: userData.isAdmin || false,
@@ -64,18 +56,14 @@ export const loginUser = async (email, password) => {
   }
 }
 
-// Google ile giriş
 export const signInWithGoogle = async () => {
   try {
     const provider = new GoogleAuthProvider()
     const result = await signInWithPopup(auth, provider)
 
-    // Google ile giriş yapan kullanıcı için users koleksiyonunda belge oluştur
-    // Eğer belge zaten varsa, güncelleme yapmaz
     const userDoc = await getDoc(doc(db, "users", result.user.uid))
 
     if (!userDoc.exists()) {
-      // Kullanıcı belgesi yoksa oluştur
       const isAdmin = result.user.email === "hasanadmin2005@gmail.com"
 
       await setDoc(doc(db, "users", result.user.uid), {
@@ -94,7 +82,7 @@ export const signInWithGoogle = async () => {
   }
 }
 
-// Çıkış yap
+// log out
 export const logoutUser = async () => {
   try {
     await signOut(auth)
@@ -105,12 +93,10 @@ export const logoutUser = async () => {
   }
 }
 
-// Kullanıcı durumunu izle
 export const onAuthStateChange = (callback) => {
   return onAuthStateChanged(auth, callback)
 }
 
-// Kullanıcının admin olup olmadığını kontrol et
 export const isUserAdmin = async (userId) => {
   try {
     const userDoc = await getDoc(doc(db, "users", userId))

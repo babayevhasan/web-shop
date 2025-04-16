@@ -1,14 +1,14 @@
 "use client"
 
 import { createContext, useState, useEffect, useContext, useMemo, useCallback } from "react"
-import { getProducts, getProductById, getProductsByCategory, seedProducts } from "../firebase/productService"
+import { getProducts, getProductById, getProductsByCategory } from "../firebase/productService"
 
 export const ProductsContext = createContext()
 
 export const useProducts = () => {
   const context = useContext(ProductsContext)
   if (context === undefined) {
-    throw new Error("hata aldIm: ProductsContext.jsx:223 Uncaught Error: useProducts must be used within a ProductsProvider")
+    throw new Error("ProductsContext.jsx:223 Uncaught Error: useProducts must be used within a ProductsProvider")
   }
   return context
 }

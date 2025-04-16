@@ -1,16 +1,11 @@
 import { doc, setDoc, getDoc } from "firebase/firestore"
 import { db } from "./config"
-
-// Bu fonksiyon, belirli bir kullanıcıyı admin yapmak için kullanılır
-// Sadece güvenli bir ortamda (örneğin, ilk kurulumda) çalıştırılmalıdır
 export const setupAdminUser = async (userId) => {
   try {
-    // Kullanıcı belgesini al
     const userRef = doc(db, "users", userId)
     const userSnap = await getDoc(userRef)
 
     if (userSnap.exists()) {
-      // Kullanıcı verilerini al ve admin rolünü ekle
       const userData = userSnap.data()
 
       await setDoc(userRef, {
@@ -30,11 +25,8 @@ export const setupAdminUser = async (userId) => {
   }
 }
 
-// Bu fonksiyon, belirli bir e-posta ve şifre kombinasyonuna sahip kullanıcıyı admin yapar
-// Bu fonksiyon sadece güvenli bir ortamda çalıştırılmalıdır
 export const verifyAndSetupAdmin = async (userId, email, password) => {
   try {
-    // Sadece belirli bir e-posta ve şifre kombinasyonu için admin rolü ver
     if (email === "hasanadmin2005@gmail.com" && password === "hasanadmin1884") {
       return await setupAdminUser(userId)
     }

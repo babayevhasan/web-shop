@@ -13,25 +13,22 @@ export default function ProtectedRoute({ children }) {
     return (
       <div className="loading-container" style={{ padding: "2rem", textAlign: "center" }}>
         <div className="loading-spinner"></div>
-        <p>Yükleniyor...</p>
+        <p>Loading...</p>
       </div>
     )
   }
   
-
-  // Kullanıcı giriş yapmamışsa login sayfasına yönlendir
   if (!currentUser) {
     return <Navigate to="/login" state={{ from: location }} replace />
   }
 
-  // Admin sayfası için admin kontrolü
   if (isAdminRoute && !isAdmin) {
     return (
       <div className="admin-access-denied">
-        <h2>Erişim Engellendi</h2>
-        <p>Bu sayfaya erişim yetkiniz bulunmamaktadır.</p>
+        <h2>Access denied</h2>
+        <p>You do not have authorization to access this page.</p>
         <button onClick={() => window.history.back()} className="back-to-home-btn">
-          Geri Dön
+        Go Back
         </button>
       </div>
     )

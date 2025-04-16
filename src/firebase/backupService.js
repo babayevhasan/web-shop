@@ -1,15 +1,11 @@
 import { collection, getDocs } from "firebase/firestore"
 import { db } from "./config"
 
-// Veritabanı yedekleme fonksiyonu
 export const backupFirestoreData = async () => {
   try {
-    // Koleksiyonları tanımla
     const collectionsToBackup = ["products", "orders"]
     const backupData = {}
 
-    
-    // Her koleksiyon için verileri al
     for (const collectionName of collectionsToBackup) {
       const querySnapshot = await getDocs(collection(db, collectionName))
 
@@ -19,10 +15,8 @@ export const backupFirestoreData = async () => {
       }))
     }
 
-    // JSON formatına dönüştür
     const jsonData = JSON.stringify(backupData, null, 2)
 
-    // Dosya indirme işlemi
     const blob = new Blob([jsonData], { type: "application/json" })
     const url = URL.createObjectURL(blob)
 
@@ -32,7 +26,6 @@ export const backupFirestoreData = async () => {
     document.body.appendChild(a)
     a.click()
 
-    // Temizlik
     setTimeout(() => {
       document.body.removeChild(a)
       URL.revokeObjectURL(url)

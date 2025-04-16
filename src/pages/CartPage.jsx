@@ -20,8 +20,7 @@ export default function CartPage() {
   }
 
   const handleWhatsAppCheckout = () => {
-    // WhatsApp mesajı oluştur
-    let message = "Merhaba, aşağıdaki ürünleri satın almak istiyorum:\n\n"
+    let message = "Hello, I would like to purchase the following products / Salam, mən aşağıdakı məhsulları almaq istəyirəm :\n\n"
 
     cartItems.forEach((item, index) => {
       message += `${index + 1}. ${item.product.name}\n`
@@ -39,10 +38,8 @@ export default function CartPage() {
 
     message += "Ödeme ve teslimat detaylarını görüşmek istiyorum."
 
-    // WhatsApp URL'si oluştur
     const whatsappUrl = `https://wa.me/+994773105127?text=${encodeURIComponent(message)}`
 
-    // Yeni sekmede WhatsApp'ı aç
     window.open(whatsappUrl, "_blank")
   }
 
@@ -50,10 +47,10 @@ export default function CartPage() {
     return (
       <div className="empty-cart">
         <ShoppingBag size={64} className="empty-cart-icon" />
-        <h2 className="empty-cart-title">Sepetiniz Boş</h2>
-        <p className="empty-cart-message">Henüz sepetinize ürün eklemediniz.</p>
+        <h2 className="empty-cart-title">Your Basket is Empty</h2>
+        <p className="empty-cart-message">You haven't added any products to your cart yet.</p>
         <Link to="/" className="continue-shopping-btn">
-          Alışverişe Devam Et
+        Continue Shopping
         </Link>
       </div>
     )
@@ -61,7 +58,7 @@ export default function CartPage() {
 
   return (
     <div className="cart-page">
-      <h1 className="cart-title">Alışveriş Sepetiniz</h1>
+      <h1 className="cart-title">Your Shopping Basket</h1>
 
       <div className="cart-layout">
         <div className="cart-items-container">
@@ -69,11 +66,11 @@ export default function CartPage() {
             <table className="cart-table">
               <thead className="cart-table-header">
                 <tr>
-                  <th className="cart-header-cell">Ürün</th>
-                  <th className="cart-header-cell">Fiyat</th>
-                  <th className="cart-header-cell">Adet</th>
-                  <th className="cart-header-cell">Toplam</th>
-                  <th className="cart-header-cell">İşlemler</th>
+                  <th className="cart-header-cell">Product</th>
+                  <th className="cart-header-cell">Price</th>
+                  <th className="cart-header-cell">Piece</th>
+                  <th className="cart-header-cell">Total</th>
+                  <th className="cart-header-cell">Transactions</th>
                 </tr>
               </thead>
               <tbody className="cart-table-body">
@@ -94,11 +91,11 @@ export default function CartPage() {
                           </Link>
                           <div className="cart-product-options">
                             {item.product.selectedSize && (
-                              <span className="cart-product-size">Beden: {item.product.selectedSize}</span>
+                              <span className="cart-product-size">Size: {item.product.selectedSize}</span>
                             )}
                             {item.product.selectedColor && (
                               <div className="cart-product-color">
-                                <span>Renk: {item.product.selectedColor.name}</span>
+                                <span>Color: {item.product.selectedColor.name}</span>
                                 <span
                                   className="color-dot"
                                   style={{ backgroundColor: item.product.selectedColor.code }}
@@ -163,17 +160,17 @@ export default function CartPage() {
           <div className="clear-cart-container">
             <button onClick={clearCart} className="clear-cart-btn">
               <Trash2 size={16} />
-              Sepeti Temizle
+              Clear Basket
             </button>
           </div>
         </div>
 
         <div className="order-summary-container">
           <div className="order-summary">
-            <h2 className="summary-title">Sipariş Özeti</h2>
+            <h2 className="summary-title">Order Summary</h2>
 
             <div className="summary-row">
-              <span className="summary-row-label">Ara Toplam</span>
+              <span className="summary-row-label">Subtotal</span>
               <span className="summary-row-value">
                 {getCartTotal().toLocaleString("tr-TR", { style: "currency", currency: "TRY" })}
               </span>
@@ -181,11 +178,11 @@ export default function CartPage() {
 
             <div className="summary-row">
               <span className="summary-row-label">Kargo</span>
-              <span className="summary-row-value">Ücretsiz</span>
+              <span className="summary-row-value">Free</span>
             </div>
 
             <div className="summary-total">
-              <span className="summary-total-label">Toplam</span>
+              <span className="summary-total-label">Total</span>
               <span className="summary-total-value">
                 {getCartTotal().toLocaleString("tr-TR", { style: "currency", currency: "TRY" })}
               </span>
@@ -194,11 +191,11 @@ export default function CartPage() {
             <div className="checkout-section">
               <div className="form-group">
                 <label htmlFor="note" className="form-label">
-                  Sipariş Notu (İsteğe Bağlı)
+                Order Note (Optional)
                 </label>
                 <textarea
                   id="note"
-                  placeholder="Siparişinizle ilgili eklemek istediğiniz notlar..."
+                  placeholder="Any notes you would like to add regarding your order..."
                   className="form-textarea"
                   value={note}
                   onChange={(e) => setNote(e.target.value)}
@@ -207,12 +204,11 @@ export default function CartPage() {
 
               <button onClick={handleWhatsAppCheckout} className="whatsapp-checkout-btn">
                 <MessageCircle size={20} />
-                WhatsApp ile Sipariş Ver
+                Order via WhatsApp
               </button>
 
               <p className="checkout-note">
-                Siparişinizi WhatsApp üzerinden tamamlamak için yukarıdaki butona tıklayın. Ödeme ve teslimat detayları
-                WhatsApp üzerinden görüşülecektir.
+              Click the button above to complete your order via WhatsApp. Payment and delivery details will be discussed via WhatsApp.
               </p>
             </div>
           </div>

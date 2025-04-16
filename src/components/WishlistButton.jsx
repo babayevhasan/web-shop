@@ -7,7 +7,6 @@ import "../styles/WishlistButton.css"
 export default function WishlistButton({ product }) {
   const [isInWishlist, setIsInWishlist] = useState(false)
 
-  // Sayfa yüklendiğinde localStorage'dan istek listesini kontrol et
   useEffect(() => {
     const wishlist = JSON.parse(localStorage.getItem("wishlist") || "[]")
     setIsInWishlist(wishlist.some((item) => item.id === product.id))
@@ -20,19 +19,16 @@ export default function WishlistButton({ product }) {
     const wishlist = JSON.parse(localStorage.getItem("wishlist") || "[]")
 
     if (isInWishlist) {
-      // Ürünü istek listesinden çıkar
       const newWishlist = wishlist.filter((item) => item.id !== product.id)
       localStorage.setItem("wishlist", JSON.stringify(newWishlist))
       setIsInWishlist(false)
     } else {
-      // Ürünü istek listesine ekle
       const newWishlist = [...wishlist, product]
       localStorage.setItem("wishlist", JSON.stringify(newWishlist))
       setIsInWishlist(true)
     }
   }
 
-  
   return (
     <button
       onClick={toggleWishlist}

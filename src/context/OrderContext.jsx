@@ -17,7 +17,6 @@ export const useOrders = () => {
 export function OrderProvider({ children }) {
   const { currentUser } = useAuth()
 
-  // Sipariş oluştur
   const placeOrder = async (cartItems, totalAmount, shippingDetails) => {
     if (!currentUser) {
       throw new Error("User must be logged in to place an order")
@@ -39,7 +38,6 @@ export function OrderProvider({ children }) {
     }
   }
 
-  // Kullanıcının siparişlerini getir
   const getOrders = async () => {
     if (!currentUser) {
       return []

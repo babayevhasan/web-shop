@@ -28,21 +28,17 @@ export function AuthProvider({ children }) {
 
       if (user) {
         try {
-          // console.log("Admin durumu kontrol ediliyor...", user.uid)
-          // Doğrudan Firestore'dan kullanıcı belgesini kontrol edelim
+   
           const userDoc = await getDoc(doc(db, "users", user.uid))
 
           if (userDoc.exists()) {
             const userData = userDoc.data()
-            // console.log("Kullanıcı verisi:", userData)
             setIsAdmin(userData.isAdmin === true)
-            // console.log("Admin durumu:", userData.isAdmin === true)
           } else {
-            // console.log("Kullanıcı belgesi bulunamadı")
             setIsAdmin(false)
           }
         } catch (err) {
-          console.error("Admin durumu kontrol edilirken hata oluştu:", err)
+          console.error("An error occurred while checking admin status.:", err)
           setIsAdmin(false)
         }
       } else {
@@ -81,7 +77,7 @@ export function AuthProvider({ children }) {
             setIsAdmin(false)
           }
         } catch (err) {
-          console.error("Admin durumu kontrol edilirken hata oluştu:", err)
+          console.error("An error occurred while checking admin status.:", err)
           setIsAdmin(false)
         }
       }
@@ -93,13 +89,11 @@ export function AuthProvider({ children }) {
     }
   }
 
-  // Google ile giriş
   const loginWithGoogle = async () => {
     try {
       setError(null)
       const user = await signInWithGoogle()
 
-      // Admin durumunu güncelle
       if (user) {
         try {
           const userDoc = await getDoc(doc(db, "users", user.uid))
@@ -110,7 +104,7 @@ export function AuthProvider({ children }) {
             setIsAdmin(false)
           }
         } catch (err) {
-          console.error("Admin durumu kontrol edilirken hata oluştu:", err)
+          console.error("An error occurred while checking admin status.:", err)
           setIsAdmin(false)
         }
       }
@@ -121,8 +115,6 @@ export function AuthProvider({ children }) {
       throw err
     }
   }
-
-  // Çıkış yap
   const logout = async () => {
     try {
       setError(null)
@@ -133,8 +125,7 @@ export function AuthProvider({ children }) {
       throw err
     }
   }
-
-  // Context değerleri
+  
   const value = {
     currentUser,
     loading,

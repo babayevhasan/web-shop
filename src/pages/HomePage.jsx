@@ -143,7 +143,7 @@ export default function HomePage() {
     return (
       <div className="loading-container">
         <div className="loading-spinner"></div>
-        <div className="loading-text">Ürünler yükleniyor...</div>
+        <div className="loading-text">Loading products...</div>
       </div>
     )
   }
@@ -160,17 +160,17 @@ export default function HomePage() {
       {searchQuery ? (
         <>
           <div className="search-results-header">
-            <h1 className="section-title">"{searchQuery}" için arama sonuçları</h1>
+            <h1 className="section-title">"{searchQuery}" search results</h1>
             <button onClick={clearSearch} className="clear-search-btn">
-              Aramayı Temizle
+            Clear Search
             </button>
           </div>
 
           {displayedProducts.length === 0 ? (
             <div className="no-products">
-              <p className="no-products-text">Aramanızla eşleşen ürün bulunamadı.</p>
+              <p className="no-products-text">No products were found matching your search.</p>
               <button onClick={clearSearch} className="back-to-all-products">
-                Tüm Ürünlere Dön
+              Back to All Products
               </button>
             </div>
           ) : (
@@ -185,18 +185,18 @@ export default function HomePage() {
         <>
           <section className="hero-section">
             <div className="hero-content">
-              <h1 className="hero-title animate-slide-up">Yeni Sezon Koleksiyonu</h1>
+              <h1 className="hero-title animate-slide-up">New Season Collection</h1>
               <p className="hero-subtitle animate-slide-up-delay">
-                En trend giyim ürünlerini keşfedin. Hızlı kargo ve kolay ödeme seçenekleriyle alışveriş yapın.
+              Discover the trendiest clothing products. Shop with fast shipping and easy payment options.
               </p>
               <button onClick={scrollToProducts} className="btn btn-primary hero-button animate-slide-up-delay-2">
-                Alışverişe Başla
+              Start Shopping
               </button>
             </div>
           </section>
 
           <section className="categories-section animate-fade-in">
-            <h2 className="section-title">Kategoriler</h2>
+            <h2 className="section-title">Categories</h2>
             <div className="categories-grid">
               {categories.map((category) => {
                 const randomProduct = products.find((product) => product.category === category)
@@ -216,14 +216,14 @@ export default function HomePage() {
           <div className="filter-sort-container animate-fade-in">
             <button className="filter-toggle-btn" onClick={() => setShowFilters(!showFilters)}>
               <SlidersHorizontal size={18} />
-              Filtreler ve Sıralama
+              Filters and Sorting
               {showFilters ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
             </button>
 
             {showFilters && (
               <div className="filters-panel animate-slide-down">
                 <div className="filter-section">
-                  <h3 className="filter-title">Fiyat Aralığı</h3>
+                  <h3 className="filter-title">Price Range</h3>
                   <div className="price-range-inputs">
                     <input
                       type="number"
@@ -241,49 +241,49 @@ export default function HomePage() {
                       className="price-input"
                     />
                     <button className="apply-filter-btn" onClick={applyPriceFilter}>
-                      Uygula
+                    Apply
                     </button>
                   </div>
                 </div>
 
                 <div className="filter-section">
-                  <h3 className="filter-title">Sıralama</h3>
+                  <h3 className="filter-title">Arrangement</h3>
                   <div className="sort-options">
                     <button
                       className={`sort-option ${sortOption === "default" ? "active" : ""}`}
                       onClick={() => handleSortChange("default")}
                     >
-                      Varsayılan
+                      Default
                     </button>
                     <button
                       className={`sort-option ${sortOption === "price-asc" ? "active" : ""}`}
                       onClick={() => handleSortChange("price-asc")}
                     >
-                      Fiyat: Düşükten Yükseğe
+                      Price: Low to High
                     </button>
                     <button
                       className={`sort-option ${sortOption === "price-desc" ? "active" : ""}`}
                       onClick={() => handleSortChange("price-desc")}
                     >
-                      Fiyat: Yüksekten Düşüğe
+                     Price: High to Low
                     </button>
-                    <button
+                    {/* <button
                       className={`sort-option ${sortOption === "newest" ? "active" : ""}`}
                       onClick={() => handleSortChange("newest")}
                     >
                       En Yeniler
-                    </button>
+                    </button> */}
                   </div>
                 </div>
 
                 <div className="filter-section">
-                  <h3 className="filter-title">Kategoriler</h3>
+                  <h3 className="filter-title">Categories</h3>
                   <div className="category-filters">
                     <button
                       className={`category-filter ${activeCategory === "all" ? "active" : ""}`}
                       onClick={() => filterByCategory("all")}
                     >
-                      Tümü
+                      All
                     </button>
                     {categories.map((category) => (
                       <button
@@ -314,10 +314,10 @@ export default function HomePage() {
           {!currentUser && (
             <section className="newsletter-section animate-fade-in">
               <div className="newsletter-content">
-                <h2 className="newsletter-title">Yeni Koleksiyonlardan Haberdar Olun</h2>
-                <p className="newsletter-text">En yeni ürünler ve özel indirimlerden haberdar olmak için üye olun.</p>
+                <h2 className="newsletter-title">Be Informed About New Collections</h2>
+                <p className="newsletter-text">Sign up to be informed about the latest products and special discounts.</p>
                 <Link to="/register" className="newsletter-button">
-                  Üye Ol
+                Become a Member
                 </Link>
               </div>
             </section>

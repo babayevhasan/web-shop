@@ -1,13 +1,10 @@
 import { collection, addDoc, getDocs, query, where, serverTimestamp } from "firebase/firestore"
 import { db } from "./config"
 
-// Koleksiyon referansı
 const ordersCol = collection(db, "orders")
 
-// Sipariş oluştur
 export const createOrder = async (orderData) => {
   try {
-    // Sipariş tarihini ekle
     const orderWithTimestamp = {
       ...orderData,
       createdAt: serverTimestamp(),
@@ -20,9 +17,6 @@ export const createOrder = async (orderData) => {
     throw error
   }
 }
-
-
-// Kullanıcının siparişlerini getir
 export const getUserOrders = async (userId) => {
   try {
     const q = query(ordersCol, where("userId", "==", userId))

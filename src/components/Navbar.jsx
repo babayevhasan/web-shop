@@ -45,17 +45,12 @@ export default function Navbar() {
 
   const toggleCategories = () => {
     setIsCategoryOpen(!isCategoryOpen);
-    setIsMenuOpen(true); // Mobil menüyü açık tutmak için
-    // console.log('isCategoryOpen:', isCategoryOpen);
+    setIsMenuOpen(true);
   };
 
-
-  // Profil menüsünü açıp kapatmak için
   const toggleProfile = () => {
     setIsProfileOpen(!isProfileOpen)
   }
-
-  // Çıkış işlemi
   const handleLogout = async () => {
     try {
       await logout()
@@ -65,7 +60,6 @@ export default function Navbar() {
     }
   }
 
-  // Dışarı tıklandığında menüleri kapatmak için
   useEffect(() => {
     function handleClickOutside(event) {
       if (categoryRef.current && !categoryRef.current.contains(event.target)) {
@@ -112,7 +106,7 @@ export default function Navbar() {
 
             <div className="dropdown" ref={categoryRef}>
               <button className="dropdown-button" onClick={toggleCategories}>
-                Kategoriler
+              Categories
               </button>
               <div className={`dropdown-content ${isCategoryOpen ? "show" : ""}`}>
                 {categories.map((category) => (
@@ -155,27 +149,23 @@ export default function Navbar() {
                     <Link to="/profile" className="dropdown-item" onClick={() => setIsProfileOpen(false)}>
                       Profil
                     </Link>
-                    {/* {isAdmin && (
-                      <Link to="/admin" className="dropdown-item" onClick={() => setIsProfileOpen(false)}>
-                        Admin Paneli
-                      </Link>
-                    )} */}
+
                     <Link to="/orders" className="dropdown-item" onClick={() => setIsProfileOpen(false)}>
                       Siparişlerim
                     </Link>
                     <button onClick={handleLogout} className="dropdown-item logout-item">
                       <LogOut size={16} className="dropdown-icon" />
-                      Çıkış Yap
+                      Log Out
                     </button>
                   </div>
                 </div>
               ) : (
                 <>
                   <Link to="/register" className="btn btn-primary">
-                    Üye Ol
+                  Sign Up
                   </Link>
                   <Link to="/login" className="btn btn-outline">
-                    Giriş Yap
+                  Login
                   </Link>
                 </>
               )}
@@ -215,29 +205,8 @@ export default function Navbar() {
             </form>
 
             <Link to="/" className="mobile-nav-link" onClick={() => setIsMenuOpen(false)}>
-              Ana Sayfa
+            Home Page
             </Link>
-
-            {/* <div className="mobile-categories">
-              <div className="mobile-category-title" onClick={toggleCategories}>
-                Kategoriler {isCategoryOpen ? "▲" : "▼"}
-              </div>
-              {isCategoryOpen && (
-                <div className="mobile-category-items">
-                  {categories.map((category) => (
-                    <Link
-                      key={category}
-                      to={`/category/${category}`}
-                      className="mobile-category-link"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      {category}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div> */}
-
 
             {currentUser ? (
               <div className="mobile-user-section">
@@ -259,28 +228,23 @@ export default function Navbar() {
                   </div>
                 </div>
                 <Link to="/profile" className="mobile-nav-link" onClick={() => setIsMenuOpen(false)}>
-                  Profil
+                Profile
                 </Link>
-                {/* {isAdmin && (
-                  <Link to="/admin" className="mobile-nav-link" onClick={() => setIsMenuOpen(false)}>
-                    Admin Paneli
-                  </Link>
-                )} */}
                 <Link to="/orders" className="mobile-nav-link" onClick={() => setIsMenuOpen(false)}>
-                  Siparişlerim
+                My Orders
                 </Link>
                 <button onClick={handleLogout} className="mobile-logout-btn">
                   <LogOut size={18} className="mobile-logout-icon" />
-                  Çıkış Yap
+                  Log Out
                 </button>
               </div>
             ) : (
               <div className="mobile-auth-buttons">
                 <Link to="/register" className="btn btn-primary mobile-auth-btn" onClick={() => setIsMenuOpen(false)}>
-                  Üye Ol
+                Sign Up
                 </Link>
                 <Link to="/login" className="btn btn-outline mobile-auth-btn" onClick={() => setIsMenuOpen(false)}>
-                  Giriş Yap
+                Login
                 </Link>
               </div>
             )}
