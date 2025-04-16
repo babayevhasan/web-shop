@@ -10,6 +10,10 @@ export default function WishlistPage() {
   const [wishlistItems, setWishlistItems] = useState([])
 
   useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
+  useEffect(() => {
     const wishlist = JSON.parse(localStorage.getItem("wishlist") || "[]")
     setWishlistItems(wishlist)
   }, [])

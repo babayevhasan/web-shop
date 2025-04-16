@@ -5,10 +5,8 @@ import { registerUser, loginUser, logoutUser, signInWithGoogle, onAuthStateChang
 import { doc, getDoc } from "firebase/firestore"
 import { db } from "../firebase/config"
 
-// Context oluştur
 export const AuthContext = createContext()
 
-// Custom hook
 export const useAuth = () => {
   const context = useContext(AuthContext)
   if (!context) {
@@ -18,32 +16,29 @@ export const useAuth = () => {
 }
 
 
-// Provider bileşeni
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [isAdmin, setIsAdmin] = useState(false)
 
-  // Kullanıcı durumunu izle
   useEffect(() => {
     const unsubscribe = onAuthStateChange(async (user) => {
       setCurrentUser(user)
 
-      // Kullanıcı varsa admin durumunu kontrol et
       if (user) {
         try {
-          console.log("Admin durumu kontrol ediliyor...", user.uid)
+          // console.log("Admin durumu kontrol ediliyor...", user.uid)
           // Doğrudan Firestore'dan kullanıcı belgesini kontrol edelim
           const userDoc = await getDoc(doc(db, "users", user.uid))
 
           if (userDoc.exists()) {
             const userData = userDoc.data()
-            console.log("Kullanıcı verisi:", userData)
+            // console.log("Kullanıcı verisi:", userData)
             setIsAdmin(userData.isAdmin === true)
-            console.log("Admin durumu:", userData.isAdmin === true)
+            // console.log("Admin durumu:", userData.isAdmin === true)
           } else {
-            console.log("Kullanıcı belgesi bulunamadı")
+            // console.log("Kullanıcı belgesi bulunamadı")
             setIsAdmin(false)
           }
         } catch (err) {
@@ -61,7 +56,6 @@ export function AuthProvider({ children }) {
     return () => unsubscribe()
   }, [])
 
-  // Kayıt ol
   const signup = async (email, password, displayName) => {
     try {
       setError(null)
@@ -72,13 +66,11 @@ export function AuthProvider({ children }) {
     }
   }
 
-  // Giriş yap
   const login = async (email, password) => {
     try {
       setError(null)
       const user = await loginUser(email, password)
 
-      // Admin durumunu güncelle
       if (user) {
         try {
           const userDoc = await getDoc(doc(db, "users", user.uid))

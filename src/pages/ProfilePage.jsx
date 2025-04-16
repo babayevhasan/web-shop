@@ -17,6 +17,10 @@ export default function ProfilePage() {
   const { currentUser, logout } = useAuth()
   const navigate = useNavigate()
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   
   const [displayName, setDisplayName] = useState("")
   const [email, setEmail] = useState("")

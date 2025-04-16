@@ -53,14 +53,14 @@ function App() {
                         </ProtectedRoute>
                       }
                     />
-                    <Route
+                    {/* <Route
                       path="/admin"
                       element={
                         <ProtectedRoute>
                           <AdminPage/>
                         </ProtectedRoute>
                       }
-                    />
+                    /> */}
                   </Routes>
                 </main>
                 <Footer />

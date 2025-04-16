@@ -11,7 +11,7 @@ import "../styles/Navbar.css"
 export default function Navbar() {
   const { getCartItemsCount } = useCart()
   const { categories } = useProducts()
-  const { currentUser, logout, isAdmin } = useAuth()
+  const { currentUser, logout,} = useAuth()
   const [searchQuery, setSearchQuery] = useState("")
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isCategoryOpen, setIsCategoryOpen] = useState(false)
@@ -42,12 +42,13 @@ export default function Navbar() {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
   }
+
   const toggleCategories = () => {
-    console.log('toggleCategories çağırıldı');
     setIsCategoryOpen(!isCategoryOpen);
     setIsMenuOpen(true); // Mobil menüyü açık tutmak için
-    console.log('isCategoryOpen:', isCategoryOpen);
+    // console.log('isCategoryOpen:', isCategoryOpen);
   };
+
 
   // Profil menüsünü açıp kapatmak için
   const toggleProfile = () => {
@@ -108,6 +109,7 @@ export default function Navbar() {
 
           {/* Desktop Menu */}
           <div className="navbar-menu desktop-menu">
+
             <div className="dropdown" ref={categoryRef}>
               <button className="dropdown-button" onClick={toggleCategories}>
                 Kategoriler
@@ -153,11 +155,11 @@ export default function Navbar() {
                     <Link to="/profile" className="dropdown-item" onClick={() => setIsProfileOpen(false)}>
                       Profil
                     </Link>
-                    {isAdmin && (
+                    {/* {isAdmin && (
                       <Link to="/admin" className="dropdown-item" onClick={() => setIsProfileOpen(false)}>
                         Admin Paneli
                       </Link>
-                    )}
+                    )} */}
                     <Link to="/orders" className="dropdown-item" onClick={() => setIsProfileOpen(false)}>
                       Siparişlerim
                     </Link>
@@ -198,6 +200,7 @@ export default function Navbar() {
         {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="mobile-menu">
+
             <form onSubmit={handleSearch} className="mobile-search-form">
               <input
                 type="text"
@@ -215,7 +218,7 @@ export default function Navbar() {
               Ana Sayfa
             </Link>
 
-            <div className="mobile-categories">
+            {/* <div className="mobile-categories">
               <div className="mobile-category-title" onClick={toggleCategories}>
                 Kategoriler {isCategoryOpen ? "▲" : "▼"}
               </div>
@@ -233,7 +236,8 @@ export default function Navbar() {
                   ))}
                 </div>
               )}
-            </div>
+            </div> */}
+
 
             {currentUser ? (
               <div className="mobile-user-section">
@@ -257,11 +261,11 @@ export default function Navbar() {
                 <Link to="/profile" className="mobile-nav-link" onClick={() => setIsMenuOpen(false)}>
                   Profil
                 </Link>
-                {isAdmin && (
+                {/* {isAdmin && (
                   <Link to="/admin" className="mobile-nav-link" onClick={() => setIsMenuOpen(false)}>
                     Admin Paneli
                   </Link>
-                )}
+                )} */}
                 <Link to="/orders" className="mobile-nav-link" onClick={() => setIsMenuOpen(false)}>
                   Siparişlerim
                 </Link>

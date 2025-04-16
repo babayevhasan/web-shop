@@ -15,6 +15,10 @@ export default function OrdersPage() {
   const [error, setError] = useState("")
 
   useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
+  useEffect(() => {
     const fetchOrders = async () => {
       try {
         setLoading(true)

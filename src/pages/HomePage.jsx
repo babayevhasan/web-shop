@@ -166,93 +166,6 @@ export default function HomePage() {
             </button>
           </div>
 
-          <div className="filter-sort-container">
-            <button className="filter-toggle-btn" onClick={() => setShowFilters(!showFilters)}>
-              <SlidersHorizontal size={18} />
-              Filtreler ve Sıralama
-              {showFilters ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
-            </button>
-
-            {showFilters && (
-              <div className="filters-panel animate-slide-down">
-                <div className="filter-section">
-                  <h3 className="filter-title">Fiyat Aralığı</h3>
-                  <div className="price-range-inputs">
-                    <input
-                      type="number"
-                      placeholder="Min ₺"
-                      value={priceRange.min}
-                      onChange={(e) => setPriceRange({ ...priceRange, min: e.target.value })}
-                      className="price-input"
-                    />
-                    <span className="price-separator">-</span>
-                    <input
-                      type="number"
-                      placeholder="Max ₺"
-                      value={priceRange.max}
-                      onChange={(e) => setPriceRange({ ...priceRange, max: e.target.value })}
-                      className="price-input"
-                    />
-                    <button className="apply-filter-btn" onClick={applyPriceFilter}>
-                      Uygula
-                    </button>
-                  </div>
-                </div>
-
-                <div className="filter-section">
-                  <h3 className="filter-title">Sıralama</h3>
-                  <div className="sort-options">
-                    <button
-                      className={`sort-option ${sortOption === "default" ? "active" : ""}`}
-                      onClick={() => handleSortChange("default")}
-                    >
-                      Varsayılan
-                    </button>
-                    <button
-                      className={`sort-option ${sortOption === "price-asc" ? "active" : ""}`}
-                      onClick={() => handleSortChange("price-asc")}
-                    >
-                      Fiyat: Düşükten Yükseğe
-                    </button>
-                    <button
-                      className={`sort-option ${sortOption === "price-desc" ? "active" : ""}`}
-                      onClick={() => handleSortChange("price-desc")}
-                    >
-                      Fiyat: Yüksekten Düşüğe
-                    </button>
-                    <button
-                      className={`sort-option ${sortOption === "newest" ? "active" : ""}`}
-                      onClick={() => handleSortChange("newest")}
-                    >
-                      En Yeniler
-                    </button>
-                  </div>
-                </div>
-
-                <div className="filter-section">
-                  <h3 className="filter-title">Kategoriler</h3>
-                  <div className="category-filters">
-                    <button
-                      className={`category-filter ${activeCategory === "all" ? "active" : ""}`}
-                      onClick={() => filterByCategory("all")}
-                    >
-                      Tümü
-                    </button>
-                    {categories.map((category) => (
-                      <button
-                        key={category}
-                        className={`category-filter ${activeCategory === category ? "active" : ""}`}
-                        onClick={() => filterByCategory(category)}
-                      >
-                        {category}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-
           {displayedProducts.length === 0 ? (
             <div className="no-products">
               <p className="no-products-text">Aramanızla eşleşen ürün bulunamadı.</p>
@@ -414,4 +327,5 @@ export default function HomePage() {
     </div>
   )
 }
+
 
