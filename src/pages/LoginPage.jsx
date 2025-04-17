@@ -59,7 +59,7 @@ export default function LoginPage() {
         <form onSubmit={handleSubmit} className="auth-form">
           <div className="form-group">
             <label htmlFor="email" className="form-label">
-              Email
+            Email
             </label>
             <div className="input-with-icon">
               <Mail size={18} className="input-icon" />

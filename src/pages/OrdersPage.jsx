@@ -24,7 +24,7 @@ export default function OrdersPage() {
         setLoading(true)
         const userOrders = await getOrders()
 
-        // Sort orders by date (newest first)
+        // Sort orders by date 
         userOrders.sort((a, b) => {
           if (!a.createdAt || !b.createdAt) return 0
           return b.createdAt?.toDate() - a.createdAt?.toDate()

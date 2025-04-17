@@ -13,7 +13,7 @@ export const setupAdminUser = async (userId) => {
         isAdmin: true,
       })
 
-      console.log("Admin rolü başarıyla atandı!")
+      console.log("Admin ayarlandı!")
       return true
     } else {
       console.error("Kullanıcı bulunamadı!")

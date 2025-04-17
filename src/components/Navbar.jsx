@@ -90,7 +90,7 @@ export default function Navbar() {
             <form onSubmit={handleSearch} className="search-form">
               <input
                 type="text"
-                placeholder="Ürün ara..."
+                placeholder="Search for products..."
                 className="search-input"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -194,7 +194,7 @@ export default function Navbar() {
             <form onSubmit={handleSearch} className="mobile-search-form">
               <input
                 type="text"
-                placeholder="Ürün ara..."
+                placeholder="Search for products..."
                 className="mobile-search-input"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}

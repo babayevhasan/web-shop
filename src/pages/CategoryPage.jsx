@@ -6,7 +6,6 @@ import { useProducts } from "../context/ProductsContext"
 import ProductCard from "../components/ProductCard"
 import { ArrowLeft, ChevronDown, ChevronUp, SlidersHorizontal } from "lucide-react"
 import "../styles/CategoryPage.css"
-
 export default function CategoryPage() {
   const { category } = useParams()
   const location = useLocation()
@@ -20,6 +19,13 @@ export default function CategoryPage() {
     setSortOption,
   } = useProducts()
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    })
+  }, [])
+
   const [products, setProducts] = useState([])
   const [displayedProducts, setDisplayedProducts] = useState([])
   const [loading, setLoading] = useState(true)
@@ -28,7 +34,7 @@ export default function CategoryPage() {
   const [priceRange, setPriceRange] = useState({ min: "", max: "" })
   const [isMobile, setIsMobile] = useState(false)
 
-  // Mobil cihaz kontrolü
+  // Mobile controll
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768)
@@ -38,7 +44,6 @@ export default function CategoryPage() {
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
-  // URL'den parametreleri al
   const queryParams = useMemo(() => {
     const params = new URLSearchParams(location.search)
     return {
@@ -52,7 +57,6 @@ export default function CategoryPage() {
     const fetchCategoryProducts = async () => {
       try {
         setLoading(true)
-        // Kategoriyi normalize et
         const normalizedCategory = category.toLowerCase().trim()
         const categoryProducts = await getProductsByCategory(normalizedCategory)
         
@@ -61,7 +65,6 @@ export default function CategoryPage() {
 
           let filteredProducts = [...categoryProducts]
 
-          // Fiyat filtresi
           if (queryParams.minPrice !== null || queryParams.maxPrice !== null) {
             filteredProducts = filterByPriceRange(
               filteredProducts,
@@ -70,21 +73,21 @@ export default function CategoryPage() {
             )
           }
 
-          // Sıralama
+          // Ranking
           filteredProducts = sortProducts(filteredProducts, queryParams.sort)
 
           setDisplayedProducts(filteredProducts)
         } else {
-          setProducts([])  // Ürün bulunmazsa
-          setDisplayedProducts([])  // Yine boş bir dizi
+          setProducts([])   
+          setDisplayedProducts([])  
         }
 
         setError(null)
       } catch (err) {
         console.error("Ürün getirme hatası:", err)
         setError("Ürünler yüklenirken bir hata oluştu")
-        setProducts([])  // Hata durumunda boş liste
-        setDisplayedProducts([])  // Hata durumunda boş liste
+        setProducts([])  
+        setDisplayedProducts([]) 
       } finally {
         setLoading(false)
       }
@@ -95,13 +98,12 @@ export default function CategoryPage() {
     }
   }, [category, queryParams])
 
-  // Mobil için touch event desteği
+  
   const toggleFilters = () => {
     setShowFilters(!showFilters)
   }
 
   const applyPriceFilter = () => {
-    // URL'i güncelle
     const params = new URLSearchParams(location.search);
     if (priceRange.min) params.set("min", priceRange.min);
     else params.delete("min");
@@ -118,24 +120,22 @@ export default function CategoryPage() {
   
     let filteredProducts = products;
   
-    // Fiyat filtresi
+    // Price filter
     if (min !== null || max !== null) {
       filteredProducts = filterByPriceRange(filteredProducts, min, max);
     }
   
-    // Kategori filtresi
+    // category filter
     filteredProducts = sortProducts(filteredProducts, sortOption);
   
     setDisplayedProducts(filteredProducts);
   };
 
-  // Sıralama seçeneğini değiştir (mobil optimizasyonlu)
   const handleSortChange = (option) => {
     setSortOption(option)
     const params = new URLSearchParams(location.search)
     params.set("sort", option)
 
-    // Mobilde replace kullanarak daha hızlı geçiş
     navigate(`${location.pathname}?${params.toString()}`, { replace: true })
 
     const sorted = sortProducts(displayedProducts, option)
@@ -146,7 +146,7 @@ export default function CategoryPage() {
     return (
       <div className="loading-container">
         <div className="loading-spinner"></div>
-        <div className="loading-text">Ürünler yükleniyor...</div>
+        <div className="loading-text">Loading products...</div>
       </div>
     )
   }
@@ -159,7 +159,7 @@ export default function CategoryPage() {
           className="retry-button"
           onClick={() => window.location.reload()}
         >
-          Tekrar Dene
+         Try Again
         </button>
       </div>
     )
@@ -169,29 +169,28 @@ export default function CategoryPage() {
     <div className={`category-page ${isMobile ? 'mobile-view' : ''}`}>
       <Link to="/" className="back-link animate-fade-in">
         <ArrowLeft size={20} className="back-icon" />
-        Tüm Ürünlere Dön
+        Back to All Products
       </Link>
 
       <h1 className="category-title animate-slide-up">
-        {category} ({displayedProducts.length} ürün)
+        {category} ({displayedProducts.length} product)
       </h1>
 
-      {/* Mobil için optimize edilmiş filtre butonu */}
       <div className="filter-sort-container animate-fade-in">
         <button 
           className="filter-toggle-btn"
           onClick={toggleFilters}
-          onTouchEnd={toggleFilters} // Mobil dokunmatik destek
+          onTouchEnd={toggleFilters} 
         >
           <SlidersHorizontal size={18} />
-          Filtreler ve Sıralama
+          Filters and Sorting
           {showFilters ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
         </button>
 
         {showFilters && (
           <div className={`filters-panel animate-slide-down ${isMobile ? 'mobile-filters' : ''}`}>
             <div className="filter-section">
-              <h3 className="filter-title">Fiyat Aralığı</h3>
+              <h3 className="filter-title">Price Range</h3>
               <div className="price-range-inputs">
                 <input
                   type="number"
@@ -199,7 +198,7 @@ export default function CategoryPage() {
                   value={priceRange.min}
                   onChange={(e) => setPriceRange({ ...priceRange, min: e.target.value })}
                   className="price-input"
-                  inputMode="numeric" // Mobil klavye optimizasyonu
+                  inputMode="numeric"
                 />
                 <span className="price-separator">-</span>
                 <input
@@ -213,22 +212,22 @@ export default function CategoryPage() {
                 <button 
                   className="apply-filter-btn"
                   onClick={applyPriceFilter}
-                  onTouchEnd={applyPriceFilter} // Mobil dokunmatik destek
+                  onTouchEnd={applyPriceFilter} 
                 >
-                  Uygula
+                  Apply
                 </button>
               </div>
             </div>
 
             <div className="filter-section">
-              <h3 className="filter-title">Sıralama</h3>
+              <h3 className="filter-title">Sort by</h3>
               <div className="sort-options">
                 {["default", "price-asc", "price-desc", "newest"].map((option) => (
                   <button
                     key={option}
                     className={`sort-option ${sortOption === option ? "active" : ""}`}
                     onClick={() => handleSortChange(option)}
-                    onTouchEnd={() => handleSortChange(option)} // Mobil dokunmatik destek
+                    onTouchEnd={() => handleSortChange(option)} 
                   >
                     {option === "default" && "Varsayılan"}
                     {option === "price-asc" && "Fiyat: Düşükten Yükseğe"}
@@ -244,7 +243,7 @@ export default function CategoryPage() {
 
       {displayedProducts.length === 0 ? (
         <div className="no-products animate-fade-in">
-          <p className="no-products-text">Bu kategoride ürün bulunamadı.</p>
+          <p className="no-products-text">No products found in this category.</p>
         </div>
       ) : (
         <div className={`products-grid animate-fade-in ${isMobile ? 'mobile-grid' : ''}`}>

@@ -20,23 +20,23 @@ export default function CartPage() {
   }
 
   const handleWhatsAppCheckout = () => {
-    let message = "Hello, I would like to purchase the following products / Salam, mən aşağıdakı məhsulları almaq istəyirəm :\n\n"
+    let message = "Hello, I would like to purchase the following products :\n\n"
 
     cartItems.forEach((item, index) => {
       message += `${index + 1}. ${item.product.name}\n`
-      message += `   Beden: ${item.product.selectedSize || "Belirtilmemiş"}\n`
-      message += `   Renk: ${item.product.selectedColor?.name || "Belirtilmemiş"}\n`
-      message += `   Adet: ${item.quantity}\n`
-      message += `   Fiyat: ${item.product.price ? (item.product.price * item.quantity).toLocaleString("tr-TR", { style: "currency", currency: "TRY" }) : "N/A"}\n\n`
+      message += `   Size: ${item.product.selectedSize || "Belirtilmemiş"}\n`
+      message += `   Color: ${item.product.selectedColor?.name || "Belirtilmemiş"}\n`
+      message += `   Piece: ${item.quantity}\n`
+      message += `   Price: ${item.product.price ? (item.product.price * item.quantity).toLocaleString("tr-TR", { style: "currency", currency: "TRY" }) : "N/A"}\n\n`
     })
 
-    message += `Toplam Tutar: ${getCartTotal().toLocaleString("tr-TR", { style: "currency", currency: "TRY" })}\n\n`
+    message += `Total Amount: ${getCartTotal().toLocaleString("tr-TR", { style: "currency", currency: "TRY" })}\n\n`
 
     if (note.trim()) {
       message += `Not: ${note}\n\n`
     }
 
-    message += "Ödeme ve teslimat detaylarını görüşmek istiyorum."
+    message += "I would like to discuss payment and delivery details."
 
     const whatsappUrl = `https://wa.me/+994773105127?text=${encodeURIComponent(message)}`
 
@@ -204,7 +204,7 @@ export default function CartPage() {
 
               <button onClick={handleWhatsAppCheckout} className="whatsapp-checkout-btn">
                 <MessageCircle size={20} />
-                Order via WhatsApp
+                Pay with WhatsApp
               </button>
 
               <p className="checkout-note">

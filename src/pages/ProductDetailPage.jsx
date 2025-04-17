@@ -28,27 +28,26 @@ export default function ProductDetailPage() {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
-  // ölçüler
+  // Sizes
   const availableSizes = ["XS", "S", "M", "L", "XL", "XXL"]
 
-  // rengler
+  // Colors
   const availableColors = [
-    { name: "Siyah", code: "#000000" },
-    { name: "Beyaz", code: "#FFFFFF" },
-    { name: "Lacivert", code: "#000080" },
-    { name: "Gri", code: "#808080" },
-    { name: "Kırmızı", code: "#FF0000" },
-    { name: "Yeşil", code: "#008000" },
-    { name: "Mavi", code: "#0000FF" },
-    { name: "Bej", code: "#F5F5DC" },
+    { name: "Black", code: "#000000" },
+    { name: "white", code: "#FFFFFF" },
+    { name: "Navy blue", code: "#000080" },
+    { name: "Gray", code: "#808080" },
+    { name: "Red", code: "#FF0000" },
+    { name: "Green", code: "#008000" },
+    { name: "Blue", code: "#0000FF" },
+    { name: "Beige", code: "#F5F5DC" },
   ]
 
-  // Ürün görselleri (ana görsel + varyasyonlar)
+  // Product images
   const productImages = product
     ? [
       product.image,
-      // product.image, 
-      // product.image, 
+      // ...product.images
     ]
     : []
 
@@ -66,7 +65,7 @@ export default function ProductDetailPage() {
           const wishlist = JSON.parse(localStorage.getItem("wishlist") || "[]")
           setIsInWishlist(wishlist.some((item) => item.id === productData.id))
 
-          // Varsayılan beden ve renk seç
+          // Set default size and color
           setSelectedSize(availableSizes[2]) // M beden varsayılan
           setSelectedColor(availableColors[0]) // İlk renk varsayılan
         } else {
@@ -83,7 +82,7 @@ export default function ProductDetailPage() {
     fetchProduct()
   }, [id, getProductById])
 
-  // Zoom işlevselliği
+  // Zoom
   const handleMouseMove = (e) => {
     if (!isZoomed || !imageRef.current) return
 
@@ -102,7 +101,7 @@ export default function ProductDetailPage() {
     return (
       <div className="loading-container">
         <div className="loading-spinner"></div>
-        <p>Ürün yükleniyor...</p>
+        <p>Loading...</p>
       </div>
     )
   }
@@ -110,10 +109,10 @@ export default function ProductDetailPage() {
   if (error || !product) {
     return (
       <div className="product-not-found">
-        <h2 className="not-found-title">Ürün Bulunamadı</h2>
-        <p className="not-found-message">Aradığınız ürün mevcut değil veya kaldırılmış.</p>
+        <h2 className="not-found-title">Product Not Found</h2>
+        <p className="not-found-message">The requested product could not be found.</p>
         <Link to="/" className="back-button">
-          Ana Sayfaya Dön
+         Back to Home
         </Link>
       </div>
     )
@@ -129,20 +128,17 @@ export default function ProductDetailPage() {
       ...product,
       selectedSize,
       selectedColor,
-      uniqueId: `${product.id}-${selectedSize}-${selectedColor.name}`, // Benzersiz ID oluştur
+      uniqueId: `${product.id}-${selectedSize}-${selectedColor.name}`, 
     }
 
-    // Seçilen miktarı da gönder
     addToCart(productWithOptions, quantity)
 
-    // Sepete ekledikten sonra sepet sayfasına yönlendir
     navigate("/cart")
   }
 
-
   const handleBuyNow = () => {
     if (!selectedSize || !selectedColor) {
-      alert("Lütfen beden ve renk seçiniz")
+      alert("Please choose size and color")
       return
     }
 
@@ -150,23 +146,22 @@ export default function ProductDetailPage() {
       ...product,
       selectedSize,
       selectedColor,
-      uniqueId: `${product.id}-${selectedSize}-${selectedColor.name}`, // Benzersiz ID oluştur
+      uniqueId: `${product.id}-${selectedSize}-${selectedColor.name}`, 
     }
 
-    // Seçilen miktarı da gönder
     addToCart(productWithOptions, quantity)
 
-    // WhatsApp'a yönlendir
-    const message = `Merhaba, aşağıdaki ürünü satın almak istiyorum:
+    // Send WhatsApp message
+    const message = `Hello, I would like to buy the following product:
     
-Ürün: ${product.name}
-Beden: ${selectedSize}
-Renk: ${selectedColor.name}
-Adet: ${quantity}
-Fiyat: ${product.price.toLocaleString("tr-TR", { style: "currency", currency: "TRY" })}
-Toplam: ${(product.price * quantity).toLocaleString("tr-TR", { style: "currency", currency: "TRY" })}
+Product: ${product.name}
+Size: ${selectedSize}
+Color: ${selectedColor.name}
+Quantity: ${quantity}
+Price: ${product.price.toLocaleString("tr-TR", { style: "currency", currency: "TRY" })}
+Total: ${(product.price * quantity).toLocaleString("tr-TR", { style: "currency", currency: "TRY" })}
 
-Ödeme ve teslimat detaylarını görüşmek istiyorum.`
+Please confirm the order. Thank you.`
 
     const whatsappUrl = `https://wa.me/+994773105127?text=${encodeURIComponent(message)}`
     window.open(whatsappUrl, "_blank")
@@ -197,12 +192,12 @@ Toplam: ${(product.price * quantity).toLocaleString("tr-TR", { style: "currency"
     const wishlist = JSON.parse(localStorage.getItem("wishlist") || "[]")
 
     if (isInWishlist) {
-      // Ürünü istek listesinden çıkar
+      //Remove from wishlist
       const newWishlist = wishlist.filter((item) => item.id !== product.id)
       localStorage.setItem("wishlist", JSON.stringify(newWishlist))
       setIsInWishlist(false)
     } else {
-      // Ürünü istek listesine ekle
+      // Add to wishlist
       const newWishlist = [...wishlist, product]
       localStorage.setItem("wishlist", JSON.stringify(newWishlist))
       setIsInWishlist(true)
@@ -213,7 +208,7 @@ Toplam: ${(product.price * quantity).toLocaleString("tr-TR", { style: "currency"
     <div className="product-detail">
       <button onClick={handleGoBack} className="back-link">
         <ArrowLeft size={20} className="back-icon" />
-        Geri
+        Back
       </button>
 
       <div className="product-layout">
@@ -266,7 +261,7 @@ Toplam: ${(product.price * quantity).toLocaleString("tr-TR", { style: "currency"
 
           <div className="product-options">
             <div className="size-options">
-              <h3 className="options-title">Beden</h3>
+              <h3 className="options-title">Size</h3>
               <div className="size-buttons">
                 {availableSizes.map((size) => (
                   <button
@@ -281,7 +276,7 @@ Toplam: ${(product.price * quantity).toLocaleString("tr-TR", { style: "currency"
             </div>
 
             <div className="color-options">
-              <h3 className="options-title">Renk</h3>
+              <h3 className="options-title">Color</h3>
               <div className="color-buttons">
                 {availableColors.map((color) => (
                   <button
@@ -305,7 +300,7 @@ Toplam: ${(product.price * quantity).toLocaleString("tr-TR", { style: "currency"
 
           <div className="quantity-selector">
             <label htmlFor="quantity" className="quantity-label">
-              Adet:
+              Quantity:
             </label>
             <div className="quantity-controls">
               <button onClick={decreaseQuantity} className="quantity-btn" aria-label="Decrease quantity">
@@ -321,34 +316,19 @@ Toplam: ${(product.price * quantity).toLocaleString("tr-TR", { style: "currency"
           <div className="product-actions">
             <button onClick={handleAddToCart} className="add-to-cart-btn">
               <ShoppingCart size={20} className="btn-icon" />
-              Sepete Ekle
+              Add to Cart
             </button>
 
             <button onClick={handleBuyNow} className="buy-now-btn">
               <MessageCircle size={20} className="btn-icon" />
-              Hemen Satın Al
+              Buy Now
             </button>
           </div>
 
           <button onClick={toggleWishlist} className={`wishlist-button ${isInWishlist ? "active" : ""}`}>
             <Heart size={20} className="wishlist-icon" />
-            {isInWishlist ? "Favorilerden Çıkar" : "Favorilere Ekle"}
+            {isInWishlist ? "remove from wishlist" : "add to wishlist"}
           </button>
-
-          <div className="product-features">
-            <div className="feature">
-              <h4>Hızlı Teslimat</h4>
-              <p>2-4 iş günü içinde kargoya verilir</p>
-            </div>
-            <div className="feature">
-              <h4>Güvenli Ödeme</h4>
-              <p>WhatsApp üzerinden güvenli ödeme seçenekleri</p>
-            </div>
-            <div className="feature">
-              <h4>Müşteri Desteği</h4>
-              <p>7/24 WhatsApp üzerinden destek</p>
-            </div>
-          </div>
         </div>
       </div>
     </div>

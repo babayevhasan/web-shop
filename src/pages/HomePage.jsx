@@ -62,51 +62,41 @@ export default function HomePage() {
     }
   }, [urlParams])
 
-  // Ürünleri filtrelemek için ayrı bir useEffect
   useEffect(() => {
     if (products.length === 0) return
 
     if (searchQuery) {
       setDisplayedProducts(searchProducts(searchQuery))
     } else {
-      // Kategori filtresini uygula
       let filteredProducts = products
       if (activeCategory !== "all") {
         filteredProducts = products.filter((product) => product.category === activeCategory)
       }
 
-      // Fiyat filtresini uygula
       if (priceRange.min || priceRange.max) {
         const min = priceRange.min ? Number.parseFloat(priceRange.min) : null
         const max = priceRange.max ? Number.parseFloat(priceRange.max) : null
         filteredProducts = filterByPriceRange(filteredProducts, min, max)
       }
 
-      // Sıralama seçeneğini uygula
       filteredProducts = sortProducts(filteredProducts, sortOption)
 
       setDisplayedProducts(filteredProducts)
 
-      // Öne çıkan ürünleri ayarla (örnek olarak ilk 4 ürün)
       setFeaturedProducts(products.slice(0, 4))
     }
   }, [products, searchQuery, activeCategory, priceRange, sortOption, searchProducts, filterByPriceRange, sortProducts])
 
-  // Bu fonksiyon, arama sonuçlarını temizleyip ana sayfaya dönmek için
   const clearSearch = () => {
     navigate("/")
   }
 
-  // Alışverişe başla butonuna tıklandığında ürünlere scroll yapma
   const scrollToProducts = () => {
     if (productsRef.current) {
       productsRef.current.scrollIntoView({ behavior: "smooth" })
     }
   }
-
-  // Fiyat filtresini uygula
   const applyPriceFilter = () => {
-    // URL'i güncelle
     const params = new URLSearchParams(location.search)
     if (priceRange.min) params.set("min", priceRange.min)
     else params.delete("min")
@@ -117,21 +107,16 @@ export default function HomePage() {
     navigate(`${location.pathname}?${params.toString()}`)
   }
 
-  // Sıralama seçeneğini değiştir
   const handleSortChange = (option) => {
     setSortOption(option)
 
-    // URL'i güncelle
     const params = new URLSearchParams(location.search)
     params.set("sort", option)
     navigate(`${location.pathname}?${params.toString()}`)
   }
-
-  // Kategori filtresini uygula
   const filterByCategory = (category) => {
     setActiveCategory(category)
 
-    // URL'i güncelle
     const params = new URLSearchParams(location.search)
     if (category !== "all") params.set("category", category)
     else params.delete("category")
@@ -212,7 +197,6 @@ export default function HomePage() {
             </div>
           </section>
 
-          {/* Filtreleme ve sıralama bölümü */}
           <div className="filter-sort-container animate-fade-in">
             <button className="filter-toggle-btn" onClick={() => setShowFilters(!showFilters)}>
               <SlidersHorizontal size={18} />
@@ -267,12 +251,6 @@ export default function HomePage() {
                     >
                      Price: High to Low
                     </button>
-                    {/* <button
-                      className={`sort-option ${sortOption === "newest" ? "active" : ""}`}
-                      onClick={() => handleSortChange("newest")}
-                    >
-                      En Yeniler
-                    </button> */}
                   </div>
                 </div>
 
