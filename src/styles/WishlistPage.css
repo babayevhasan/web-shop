@@ -114,7 +114,6 @@
   background-color: var(--accent-hover);
 }
 
-/* Favoriler sayfasında ürün kartlarındaki kalp ikonunu gizle */
 .wishlist-item .wishlist-icon-button {
   display: none !important;
 }

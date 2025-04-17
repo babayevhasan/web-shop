@@ -133,7 +133,6 @@ p {
   border-radius: 50%;
 }
 
-/* Form elements */
 .input {
   width: 100%;
   padding: 0.75rem 1rem;
@@ -154,7 +153,6 @@ p {
   color: var(--text-tertiary);
 }
 
-/* Responsive utilities */
 @media (min-width: 640px) {
   .container {
     padding: 0 1.5rem;

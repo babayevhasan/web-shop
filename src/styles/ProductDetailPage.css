@@ -297,12 +297,12 @@
 }
 
 .buy-now-btn {
-  background-color: #25d366; /* WhatsApp green */
+  background-color: #25d366;
   color: white;
 }
 
 .buy-now-btn:hover {
-  background-color: #128c7e; /* Darker WhatsApp green */
+  background-color: #128c7e; 
 }
 
 .btn-icon {

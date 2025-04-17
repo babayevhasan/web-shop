@@ -377,14 +377,13 @@
   background-color: var(--accent-hover);
 }
 
-/* Mobil görünüm için sepet tablosu düzenlemesi */
 @media (max-width: 767px) {
   .cart-table {
     display: block;
   }
 
   .cart-table-header {
-    display: none; /* Mobilde başlıkları gizle */
+    display: none; 
   }
 
   .cart-table-body {

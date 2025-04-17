@@ -33,12 +33,12 @@ export default function WishlistPage() {
     return (
       <div className="empty-wishlist">
         <Heart size={64} className="empty-wishlist-icon" />
-        <h2 className="empty-wishlist-title">Favorileriniz Boş</h2>
+        <h2 className="empty-wishlist-title">Your Favorites are Empty</h2>
         <p className="empty-wishlist-message">
-          Beğendiğiniz ürünleri favorilerinize ekleyerek daha sonra inceleyebilirsiniz.
+        You can add the products you like to your favorites and review them later.
         </p>
         <Link to="/" className="continue-shopping-btn">
-          Alışverişe Devam Et
+        Continue Shopping
         </Link>
       </div>
     )
@@ -47,10 +47,10 @@ export default function WishlistPage() {
   return (
     <div className="wishlist-page">
       <div className="wishlist-header">
-        <h1 className="wishlist-title">Favorilerim</h1>
+        <h1 className="wishlist-title">My Favorites</h1>
         <button onClick={clearWishlist} className="clear-wishlist-btn">
           <Trash2 size={16} className="clear-icon" />
-          Favorileri Temizle
+          Clear Favorites
         </button>
       </div>
 

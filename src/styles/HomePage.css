@@ -252,7 +252,6 @@
   background-color: var(--accent-hover);
 }
 
-/* Filtreleme ve sıralama stilleri */
 .filter-sort-container {
   margin-bottom: 2rem;
 }
@@ -383,7 +382,6 @@
   border-color: var(--accent);
 }
 
-/* Animasyonlar */
 .animate-fade-in {
   animation: fadeIn 0.5s ease-in-out;
 }
@@ -473,7 +471,6 @@
   }
 }
 
-/* Mobil optimizasyon */
 @media (max-width: 480px) {
   .hero-content {
     padding: 3rem 1.5rem;
