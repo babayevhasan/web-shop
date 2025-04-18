@@ -105,18 +105,21 @@
   position: absolute;
   left: 0;
   margin-top: 0.5rem;
-  width: 12rem;
+  width: 15rem;
   background-color: var(--background-light);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   z-index: 20;
   border: 1px solid var(--border);
   overflow: hidden;
+  max-height: 15rem;
+  overflow-y: auto;
 }
 
 .dropdown-content.show {
   display: block;
 }
+
 
 .dropdown-item {
   display: block;

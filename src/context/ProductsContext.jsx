@@ -92,12 +92,12 @@ const categories = useMemo(() => {
 
   const searchProducts = useCallback(
     (query) => {
-      const searchTerm = query.toLowerCase()
+      const searchTerm = query?.toLowerCase()
       return products.filter(
         (product) =>
-          product.name.toLowerCase().includes(searchTerm) ||
-          product.description.toLowerCase().includes(searchTerm) ||
-          product.category.toLowerCase().includes(searchTerm),
+          product.name?.toLowerCase().includes(searchTerm) ||
+          product.description?.toLowerCase().includes(searchTerm) ||
+          product.category?.toLowerCase().includes(searchTerm),
       )
     },
     [products],
