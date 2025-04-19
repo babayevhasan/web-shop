@@ -18,25 +18,6 @@ export default function Footer() {
             </p>
             <div className="social-links">
               <a
-
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link"
-                aria-label="Facebook"
-              >
-                <Facebook size={20} />
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link"
-                aria-label="Twitter"
-              >
-                <Twitter size={20} />
-              </a>
-              <a
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -46,13 +27,13 @@ export default function Footer() {
                 <Instagram size={20} />
               </a>
               <a
-                href="https://youtube.com"
+                href="https://api.whatsapp.com/send?phone=+994773105127"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-link"
-                aria-label="Youtube"
+                aria-label="WhatsApp"
               >
-                <Youtube size={20} />
+                <Phone size={20} />
               </a>
             </div>
           </div>

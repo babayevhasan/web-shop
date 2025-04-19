@@ -52,9 +52,9 @@ const ProductCard = memo(({ product, isInWishlistPage = false }) => {
     [isInWishlist, product],
   )
 
-  const formattedPrice = new Intl.NumberFormat("tr-TR", {
+  const formattedPrice = new Intl.NumberFormat("en-US", {
     style: "currency",
-    currency: "TRY",
+    currency: "USD",
   }).format(product.price)
 
   return (

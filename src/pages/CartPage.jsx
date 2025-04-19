@@ -27,10 +27,10 @@ export default function CartPage() {
       message += `   Size: ${item.product.selectedSize || "Belirtilmemiş"}\n`
       message += `   Color: ${item.product.selectedColor?.name || "Belirtilmemiş"}\n`
       message += `   Piece: ${item.quantity}\n`
-      message += `   Price: ${item.product.price ? (item.product.price * item.quantity).toLocaleString("tr-TR", { style: "currency", currency: "TRY" }) : "N/A"}\n\n`
+      message += `   Price: ${item.product.price ? (item.product.price * item.quantity).toLocaleString("en-US", { style: "currency", currency: "USD" }) : "N/A"}\n\n`
     })
 
-    message += `Total Amount: ${getCartTotal().toLocaleString("tr-TR", { style: "currency", currency: "TRY" })}\n\n`
+    message += `Total Amount: ${getCartTotal().toLocaleString("en-US", { style: "currency", currency: "USD" })}\n\n`
 
     if (note.trim()) {
       message += `Not: ${note}\n\n`
@@ -108,7 +108,7 @@ export default function CartPage() {
                     </td>
                     <td className="cart-cell price-cell" data-label="Fiyat">
                       {item.product.price
-                        ? item.product.price.toLocaleString("tr-TR", { style: "currency", currency: "TRY" })
+                        ? item.product.price.toLocaleString("en-US", { style: "currency", currency: "USD" })
                         : "N/A"}
                     </td>
                     <td className="cart-cell quantity-cell" data-label="Adet">
@@ -134,11 +134,11 @@ export default function CartPage() {
                         </button>
                       </div>
                     </td>
-                    <td className="cart-cell total-cell" data-label="Toplam">
+                    <td className="cart-cell total-cell" data-label="Total">
                       {item.product.price
-                        ? (item.product.price * item.quantity).toLocaleString("tr-TR", {
+                        ? (item.product.price * item.quantity).toLocaleString("en-US", {
                             style: "currency",
-                            currency: "TRY",
+                            currency: "USD",
                           })
                         : "N/A"}
                     </td>
@@ -172,7 +172,7 @@ export default function CartPage() {
             <div className="summary-row">
               <span className="summary-row-label">Subtotal</span>
               <span className="summary-row-value">
-                {getCartTotal().toLocaleString("tr-TR", { style: "currency", currency: "TRY" })}
+                {getCartTotal().toLocaleString("en-US", { style: "currency", currency: "USD" })}
               </span>
             </div>
 
@@ -184,7 +184,7 @@ export default function CartPage() {
             <div className="summary-total">
               <span className="summary-total-label">Total</span>
               <span className="summary-total-value">
-                {getCartTotal().toLocaleString("tr-TR", { style: "currency", currency: "TRY" })}
+                {getCartTotal().toLocaleString("en-US", { style: "currency", currency: "USD" })}
               </span>
             </div>
 

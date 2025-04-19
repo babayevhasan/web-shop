@@ -194,7 +194,7 @@ export default function CategoryPage() {
               <div className="price-range-inputs">
                 <input
                   type="number"
-                  placeholder="Min ₺"
+                  placeholder="Min $"
                   value={priceRange.min}
                   onChange={(e) => setPriceRange({ ...priceRange, min: e.target.value })}
                   className="price-input"
@@ -203,7 +203,7 @@ export default function CategoryPage() {
                 <span className="price-separator">-</span>
                 <input
                   type="number"
-                  placeholder="Max ₺"
+                  placeholder="Max $"
                   value={priceRange.max}
                   onChange={(e) => setPriceRange({ ...priceRange, max: e.target.value })}
                   className="price-input"

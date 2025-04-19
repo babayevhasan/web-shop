@@ -158,8 +158,8 @@ Product: ${product.name}
 Size: ${selectedSize}
 Color: ${selectedColor.name}
 Quantity: ${quantity}
-Price: ${product.price.toLocaleString("tr-TR", { style: "currency", currency: "TRY" })}
-Total: ${(product.price * quantity).toLocaleString("tr-TR", { style: "currency", currency: "TRY" })}
+Price: ${product.price.toLocaleString("en-US", { style: "currency", currency: "USD" })}
+Total: ${(product.price * quantity).toLocaleString("en-US", { style: "currency", currency: "USD" })}
 
 Please confirm the order. Thank you.`
 
@@ -256,7 +256,7 @@ Please confirm the order. Thank you.`
           <span className="product-category">{product.category}</span>
 
           <div className="product-detail-price">
-            {product.price ? product.price.toLocaleString("tr-TR", { style: "currency", currency: "TRY" }) : "N/A"}
+            {product.price ? `${product.price.toLocaleString("en-US")}$` : "N/A"}
           </div>
 
           <div className="product-options">

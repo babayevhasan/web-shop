@@ -170,12 +170,12 @@ export default function HomePage() {
         <>
           <section className="hero-section">
             <div className="hero-content">
-              <h1 className="hero-title animate-slide-up">New Season Collection</h1>
+              <h1 className="hero-title animate-slide-up">Explore the Latest Trends</h1>
               <p className="hero-subtitle animate-slide-up-delay">
-              Discover the trendiest clothing products. Shop with fast shipping and easy payment options.
+              Uncover the most stylish clothing items. Enjoy fast delivery and convenient payment methods.
               </p>
               <button onClick={scrollToProducts} className="btn btn-primary hero-button animate-slide-up-delay-2">
-              Start Shopping
+              Shop Now
               </button>
             </div>
           </section>
@@ -211,7 +211,7 @@ export default function HomePage() {
                   <div className="price-range-inputs">
                     <input
                       type="number"
-                      placeholder="Min ₺"
+                      placeholder="Min $"
                       value={priceRange.min}
                       onChange={(e) => setPriceRange({ ...priceRange, min: e.target.value })}
                       className="price-input"
@@ -219,12 +219,12 @@ export default function HomePage() {
                     <span className="price-separator">-</span>
                     <input
                       type="number"
-                      placeholder="Max ₺"
+                      placeholder="Max $"
                       value={priceRange.max}
                       onChange={(e) => setPriceRange({ ...priceRange, max: e.target.value })}
                       className="price-input"
                     />
-                    <button className="apply-filter-btn" onClick={applyPriceFilter}>
+                    <button className="apply-filter-btn" onClick={() => { applyPriceFilter(); setShowFilters(false) }}>
                     Apply
                     </button>
                   </div>
@@ -235,19 +235,19 @@ export default function HomePage() {
                   <div className="sort-options">
                     <button
                       className={`sort-option ${sortOption === "default" ? "active" : ""}`}
-                      onClick={() => handleSortChange("default")}
+                      onClick={() => { handleSortChange("default"); setShowFilters(false) }}
                     >
                       Default
                     </button>
                     <button
                       className={`sort-option ${sortOption === "price-asc" ? "active" : ""}`}
-                      onClick={() => handleSortChange("price-asc")}
+                      onClick={() => { handleSortChange("price-asc"); setShowFilters(false) }}
                     >
                       Price: Low to High
                     </button>
                     <button
                       className={`sort-option ${sortOption === "price-desc" ? "active" : ""}`}
-                      onClick={() => handleSortChange("price-desc")}
+                      onClick={() => { handleSortChange("price-desc"); setShowFilters(false) }}
                     >
                      Price: High to Low
                     </button>
@@ -259,7 +259,7 @@ export default function HomePage() {
                   <div className="category-filters">
                     <button
                       className={`category-filter ${activeCategory === "all" ? "active" : ""}`}
-                      onClick={() => filterByCategory("all")}
+                      onClick={() => { filterByCategory("all"); setShowFilters(false) }}
                     >
                       All
                     </button>
@@ -267,7 +267,7 @@ export default function HomePage() {
                       <button
                         key={category}
                         className={`category-filter ${activeCategory === category ? "active" : ""}`}
-                        onClick={() => filterByCategory(category)}
+                        onClick={() => { filterByCategory(category); setShowFilters(false) }}
                       >
                         {category}
                       </button>
@@ -276,11 +276,21 @@ export default function HomePage() {
                 </div>
               </div>
             )}
+
+            {showFilters === false && (
+              <div className="filter-summary animate-fade-in">
+                <div>
+                  {activeCategory !== "all" ? `Category: ${activeCategory}` : ""}
+                </div>
+                <div>{`Showing products with price range ${priceRange.min ? `${priceRange.min}$` : ""} ${priceRange.max ? `- ${priceRange.max}$` : ""}`}</div>
+                <div>{`and sorted by ${sortOption === "price-asc" ? "Price: Low to High" : sortOption === "price-desc" ? "Price: High to Low" : "Default"}`}</div>
+              </div>
+            )}
           </div>
 
           <section id="featured-products" ref={productsRef} className="featured-section animate-fade-in">
             <h2 className="section-title">
-              {activeCategory !== "all" ? `${activeCategory} Ürünleri` : "Tüm Ürünler"}
+              {activeCategory !== "all" ? `${activeCategory} ` : "All Products"}
             </h2>
             <div className="products-grid">
               {displayedProducts.map((product) => (

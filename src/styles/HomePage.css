@@ -356,6 +356,21 @@
   border-color: var(--accent);
 }
 
+
+
+
+
+   /* CSS for filter-summary */
+   .filter-summary {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+  }
+
+
+
+
+
 .category-filters {
   display: flex;
   flex-wrap: wrap;

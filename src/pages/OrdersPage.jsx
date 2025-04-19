@@ -148,7 +148,7 @@ export default function OrdersPage() {
                     <span className="item-quantity">Quantity: {item.quantity}</span>
                     <span className="item-price">
                       {item.product.price
-                        ? item.product.price.toLocaleString("tr-TR", { style: "currency", currency: "TRY" })
+                        ? item.product.price.toLocaleString("en-US", { style: "currency", currency: "USD" })
                         : "N/A"}
                     </span>
                   </div>
@@ -169,7 +169,7 @@ export default function OrdersPage() {
                   <span className="summary-label">Total</span>
                   <span className="summary-value">
                     {order.totalAmount
-                      ? order.totalAmount.toLocaleString("tr-TR", { style: "currency", currency: "TRY" })
+                      ? order.totalAmount.toLocaleString("en-US", { style: "currency", currency: "USD" })
                       : "N/A"}
                   </span>
                 </div>
