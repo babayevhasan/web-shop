@@ -102,14 +102,14 @@ export default function LoginPage() {
           <span>OR</span>
         </div>
 
-        <button onClick={handleGoogleLogin} className="google-button" disabled={loading}>
+        {/* <button onClick={handleGoogleLogin} className="google-button" disabled={loading}>
           <img
             src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
             alt="Google"
             className="google-icon"
           />
           Login with Google
-        </button>
+        </button> */}
 
         <p className="auth-redirect">
           Don't have an account?{" "}

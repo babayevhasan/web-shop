@@ -127,6 +127,9 @@ export default function RegisterPage() {
             {loading ? "Creating Account..." : "Register"}
           </button>
         </form>
+        <div className="auth-divider">
+          <span>OR</span>
+        </div>
 
         <p className="auth-redirect">
           Already have an account?{" "}

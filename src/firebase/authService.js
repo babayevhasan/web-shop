@@ -76,8 +76,13 @@ export const signInWithGoogle = async () => {
     }
 
     return result.user
-  } catch (error) {
-    console.error("Error signing in with Google: ", error)
+  }
+   catch (error) {
+    if (error.code === "auth/operation-not-allowed") {
+      console.warn("Google sign-in is not enabled in the Firebase console. Please enable it to use this feature.")
+    } else {
+      console.error("Error signing in with Google: ", error)
+    }
     throw error
   }
 }
