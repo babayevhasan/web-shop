@@ -312,7 +312,6 @@ Please confirm the order. Thank you.`
               </button>
             </div>
           </div>
-
           <div className="product-actions">
             <button onClick={handleAddToCart} className="add-to-cart-btn">
               <ShoppingCart size={20} className="btn-icon" />

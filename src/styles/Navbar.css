@@ -32,7 +32,6 @@
   color: var(--accent);
 }
 
-/* Search */
 .search-container {
   flex: 1;
   max-width: 500px;
@@ -76,7 +75,6 @@
   color: var(--text-primary);
 }
 
-/* Desktop Menu */
 .navbar-menu {
   display: none;
   align-items: center;
@@ -168,7 +166,6 @@
   font-weight: 600;
 }
 
-/* Profile button */
 .profile-button {
   width: 2.5rem;
   height: 2.5rem;
@@ -237,7 +234,6 @@
   background-color: rgba(244, 67, 54, 0.1);
 }
 
-/* Mobile Menu */
 .mobile-menu-controls {
   display: flex;
   align-items: center;
@@ -337,7 +333,6 @@
   width: 100%;
 }
 
-/* Mobile user section */
 .mobile-user-section {
   padding-top: 1rem;
   border-top: 1px solid var(--border);
@@ -400,7 +395,7 @@
   margin-right: 0.5rem;
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
   .search-container {
     display: none;
