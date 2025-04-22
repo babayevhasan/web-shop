@@ -11,7 +11,7 @@ import "../styles/Navbar.css"
 export default function Navbar() {
   const { getCartItemsCount } = useCart()
   const { categories } = useProducts()
-  const { currentUser, logout,} = useAuth()
+  const { currentUser, logout, } = useAuth()
   const [searchQuery, setSearchQuery] = useState("")
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isCategoryOpen, setIsCategoryOpen] = useState(false)
@@ -106,7 +106,7 @@ export default function Navbar() {
 
             <div className="dropdown" ref={categoryRef}>
               <button className="dropdown-button" onClick={toggleCategories}>
-              Categories
+                Categories
               </button>
               <div className={`dropdown-content ${isCategoryOpen ? "show" : ""}`}>
                 {categories.map((category) => (
@@ -147,11 +147,11 @@ export default function Navbar() {
                       <span className="dropdown-email">{currentUser.email}</span>
                     </div>
                     <Link to="/profile" className="dropdown-item" onClick={() => setIsProfileOpen(false)}>
-                      Profil
+                      Profile
                     </Link>
 
                     <Link to="/orders" className="dropdown-item" onClick={() => setIsProfileOpen(false)}>
-                      Siparişlerim
+                      My Orders
                     </Link>
                     <button onClick={handleLogout} className="dropdown-item logout-item">
                       <LogOut size={16} className="dropdown-icon" />
@@ -162,10 +162,10 @@ export default function Navbar() {
               ) : (
                 <>
                   <Link to="/register" className="btn btn-primary">
-                  Sign Up
+                    Sign Up
                   </Link>
                   <Link to="/login" className="btn btn-outline">
-                  Login
+                    Login
                   </Link>
                 </>
               )}
@@ -205,7 +205,7 @@ export default function Navbar() {
             </form>
 
             <Link to="/" className="mobile-nav-link" onClick={() => setIsMenuOpen(false)}>
-            Home Page
+              Home Page
             </Link>
 
             {currentUser ? (
@@ -228,10 +228,10 @@ export default function Navbar() {
                   </div>
                 </div>
                 <Link to="/profile" className="mobile-nav-link" onClick={() => setIsMenuOpen(false)}>
-                Profile
+                  Profile
                 </Link>
                 <Link to="/orders" className="mobile-nav-link" onClick={() => setIsMenuOpen(false)}>
-                My Orders
+                  My Orders
                 </Link>
                 <button onClick={handleLogout} className="mobile-logout-btn">
                   <LogOut size={18} className="mobile-logout-icon" />
@@ -241,10 +241,10 @@ export default function Navbar() {
             ) : (
               <div className="mobile-auth-buttons">
                 <Link to="/register" className="btn btn-primary mobile-auth-btn" onClick={() => setIsMenuOpen(false)}>
-                Sign Up
+                  Sign Up
                 </Link>
                 <Link to="/login" className="btn btn-outline mobile-auth-btn" onClick={() => setIsMenuOpen(false)}>
-                Login
+                  Login
                 </Link>
               </div>
             )}

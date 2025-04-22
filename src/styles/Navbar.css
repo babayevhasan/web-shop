@@ -10,7 +10,7 @@
 .navbar-container {
   max-width: var(--container-width);
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 2.5rem;
 }
 
 .navbar-content {

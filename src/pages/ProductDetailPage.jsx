@@ -66,8 +66,8 @@ export default function ProductDetailPage() {
           setIsInWishlist(wishlist.some((item) => item.id === productData.id))
 
           // Set default size and color
-          setSelectedSize(availableSizes[2]) // M beden varsayılan
-          setSelectedColor(availableColors[0]) // İlk renk varsayılan
+          setSelectedSize(availableSizes[2]) 
+          setSelectedColor(availableColors[0]) 
         } else {
           setError("Product not found")
         }
@@ -274,7 +274,7 @@ Please confirm the order. Thank you.`
                 ))}
               </div>
             </div>
-
+{/* 
             <div className="color-options">
               <h3 className="options-title">Color</h3>
               <div className="color-buttons">
@@ -293,7 +293,7 @@ Please confirm the order. Thank you.`
                 ))}
               </div>
               {selectedColor && <span className="selected-color-name">{selectedColor.name}</span>}
-            </div>
+            </div> */}
           </div>
 
           <p className="product-detail-description">{product.description}</p>
